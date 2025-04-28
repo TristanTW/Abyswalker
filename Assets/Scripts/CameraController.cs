@@ -14,6 +14,7 @@ public class CameraController : MonoBehaviour
     private Camera _followerCamera;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    //test
     void Start()
     {
         _mainCamera.transform.position = _followerCamera.transform.position;
