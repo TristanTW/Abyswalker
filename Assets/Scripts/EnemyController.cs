@@ -15,7 +15,7 @@ public class EnemyAI : MonoBehaviour
 
             if (distance > attackRange)
             {
-                transform.position = Vector3.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
             }
             else
             {
