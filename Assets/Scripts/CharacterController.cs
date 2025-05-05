@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class CharacterControll : MonoBehaviour
@@ -5,14 +6,38 @@ public class CharacterControll : MonoBehaviour
     [SerializeField]
     private float _speed;
 
+    [SerializeField]
+    private Camera _camera;
+
+    [SerializeField]
+    private GameObject _body;
+
+    private float _hitPoints = 100;
+    private GameObject _character;
+    private GameObject _skeletonSword;
+
+
     private Rigidbody _rb;
+    private Rigidbody _skellybody;
+
+    Vector3 _mouseLocation = new Vector3(0, 0, 1);
 
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
+        _skellybody = GetComponent<Rigidbody>();
+
+
     }
 
     void FixedUpdate()
+    {
+        Movement();
+        Rotation();
+        Dodge();
+    }
+
+    private void Movement()
     {
         int forward = 0;
         int backward = 0;
@@ -28,6 +53,43 @@ public class CharacterControll : MonoBehaviour
         Vector3 movementVector = directionVector.normalized * _speed * Time.fixedDeltaTime;
 
         _rb.MovePosition(_rb.position + movementVector);
+
+
     }
+
+
+    private void Rotation()
+    {
+        Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
+
+        Plane plane = new Plane(-transform.transform.up, 1);
+
+        if (plane.Raycast(ray, out float distance))
+        {
+            _mouseLocation = ray.GetPoint(distance);
+        }
+        _mouseLocation.y = _body.transform.position.y;
+
+
+        _body.transform.LookAt(_mouseLocation);
+    }
+
+    private void Dodge()
+    {
+
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+
+        if (collision.gameObject == _skeletonSword)
+        {
+            Debug.Log("hit");
+            _hitPoints -= 5;
+
+        }
+    }
+
+
 }
 
