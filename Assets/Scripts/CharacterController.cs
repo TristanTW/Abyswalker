@@ -24,7 +24,7 @@ public class CharacterControll : MonoBehaviour
     void FixedUpdate()
     {
         Movement();
-        Rotation();
+        //Rotation();
         Dodge();
     }
 
