@@ -1,24 +1,33 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class CharacterControll : MonoBehaviour
 {
     [SerializeField]
     private float _speed;
+
     [SerializeField]
     private Camera _camera;
 
     [SerializeField]
     private GameObject _body;
 
-    private Rigidbody _rb;
+    private float _hitPoints = 100;
+    private GameObject _character;
+    private GameObject _skeletonSword;
 
-    Vector3 _mouseLocation = new Vector3 (0, 0, 1);
+
+    private Rigidbody _rb;
+    private Rigidbody _skellybody;
+
+    Vector3 _mouseLocation = new Vector3(0, 0, 1);
 
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
+        _skellybody = GetComponent<Rigidbody>();
+
+
     }
 
     void FixedUpdate()
@@ -44,7 +53,10 @@ public class CharacterControll : MonoBehaviour
         Vector3 movementVector = directionVector.normalized * _speed * Time.fixedDeltaTime;
 
         _rb.MovePosition(_rb.position + movementVector);
+
+
     }
+
 
     private void Rotation()
     {
@@ -66,5 +78,18 @@ public class CharacterControll : MonoBehaviour
     {
 
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+
+        if (collision.gameObject == _skeletonSword)
+        {
+            Debug.Log("hit");
+            _hitPoints -= 5;
+
+        }
+    }
+
+
 }
 
