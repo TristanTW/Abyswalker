@@ -5,27 +5,30 @@ using UnityEngine;
 public class CharacterControll : MonoBehaviour
 {
     [SerializeField]
-<<<<<<< HEAD
-    private float _speed = 5f;
-
-    [SerializeField]
-    private float _rotationSpeed = 10f;
-=======
     private float _speed;
+<<<<<<< Updated upstream
     [SerializeField]
     private Camera _camera;
 
     [SerializeField]
     private GameObject _body;
->>>>>>> 60832ee040784331530cdde6962a253512fe8bdb
+=======
+    private float _hitPoints = 100;
+    private GameObject _character;
+    private GameObject _skeletonSword;
+>>>>>>> Stashed changes
 
     private Rigidbody _rb;
+    private Rigidbody _skellybody;
 
     Vector3 _mouseLocation = new Vector3 (0, 0, 1);
 
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
+        _skellybody = GetComponent<Rigidbody>();
+
+
     }
 
     void FixedUpdate()
@@ -48,25 +51,14 @@ public class CharacterControll : MonoBehaviour
         if (Input.GetKey(KeyCode.D)) right = 1;
 
         Vector3 directionVector = new Vector3(left + right, 0, forward + backward);
+        Vector3 movementVector = directionVector.normalized * _speed * Time.fixedDeltaTime;
 
-        if (directionVector.sqrMagnitude > 0.01f)
-        {
-            Vector3 movementVector = directionVector.normalized * _speed * Time.fixedDeltaTime;
+        _rb.MovePosition(_rb.position + movementVector);
 
-            // Move the character
-            _rb.MovePosition(_rb.position + movementVector);
 
-            // Rotate only if direction is not zero
-            Vector3 lookDirection = directionVector.normalized;
-            if (lookDirection != Vector3.zero)
-            {
-                Quaternion targetRotation = Quaternion.LookRotation(lookDirection);
-                Quaternion newRotation = Quaternion.Slerp(_rb.rotation, targetRotation, _rotationSpeed * Time.fixedDeltaTime);
-                _rb.MoveRotation(newRotation);
-            }
-        }
     }
 
+<<<<<<< Updated upstream
     private void Rotation()
     {
         //Vector3 mousePos = Input.mousePosition;
@@ -106,5 +98,18 @@ public class CharacterControll : MonoBehaviour
     {
 
     }
+=======
+    private void OnCollisionEnter(Collision collision)
+    {
+
+        if (collision.gameObject == _skeletonSword)
+        {
+            Debug.Log("hit");
+            _hitPoints -= 5;
+
+        }
+    }
+
+>>>>>>> Stashed changes
 }
 
