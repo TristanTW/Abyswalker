@@ -1,11 +1,20 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CharacterControll : MonoBehaviour
 {
     [SerializeField]
     private float _speed;
+    [SerializeField]
+    private Camera _camera;
+
+    [SerializeField]
+    private GameObject _body;
 
     private Rigidbody _rb;
+
+    Vector3 _mouseLocation = new Vector3 (0, 0, 1);
 
     void Start()
     {
@@ -13,6 +22,13 @@ public class CharacterControll : MonoBehaviour
     }
 
     void FixedUpdate()
+    {
+        Movement();
+        Rotation();
+        Dodge();
+    }
+
+    private void Movement()
     {
         int forward = 0;
         int backward = 0;
@@ -28,6 +44,46 @@ public class CharacterControll : MonoBehaviour
         Vector3 movementVector = directionVector.normalized * _speed * Time.fixedDeltaTime;
 
         _rb.MovePosition(_rb.position + movementVector);
+    }
+
+    private void Rotation()
+    {
+        //Vector3 mousePos = Input.mousePosition;
+
+        //Vector3 position = new Vector3((mousePos.x) / Screen.width, (mousePos.y) / Screen.height, mousePos.z);
+
+        //Vector3 mouseLocation = _camera.ViewportToWorldPoint(position);
+        //mouseLocation.y = 0;
+
+        Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
+
+        Plane plane = new Plane(-transform.transform.up, 0);
+
+        if (plane.Raycast(ray, out float distance))
+        {
+            _mouseLocation = ray.GetPoint(distance);
+            _mouseLocation.Normalize();
+        }
+
+        Vector3 lookVector = _mouseLocation - transform.position;
+        lookVector.y = 0;
+        lookVector.Normalize();
+
+        Vector3 forward = _camera.transform.forward;
+        forward.y = 0;
+        forward = forward.normalized;
+
+        float dot = Vector2.Dot(new Vector2(forward.x, forward.z), new Vector2(lookVector.x, lookVector.z));
+        float rotation = (float)Math.Acos(dot);
+        float sin = (float)Math.Asin(dot);
+
+        _body.transform.rotation = new Quaternion(transform.rotation.x, rotation, transform.rotation.z, transform.rotation.w);
+        Debug.Log(rotation);
+    }
+
+    private void Dodge()
+    {
+
     }
 }
 
