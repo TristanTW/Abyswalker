@@ -3,6 +3,7 @@ using UnityEngine;
 public class EnemySpawning : MonoBehaviour
 {
     public GameObject enemy;
+    public GameObject parent;
 
     GameObject player;
 
@@ -15,7 +16,7 @@ public class EnemySpawning : MonoBehaviour
 
     private void Start()
     {
-        spawnPosition = transform.parent.position;
+        spawnPosition = parent.transform.position;
         spawnPosition.y = player.transform.position.y;
 
         GameObject enemyObject = Instantiate(enemy, spawnPosition, Quaternion.identity);

@@ -219,6 +219,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 10
+  _camera: {fileID: 2068681631}
+  _body: {fileID: 0}
 --- !u!54 &254269662
 Rigidbody:
   m_ObjectHideFlags: 0
