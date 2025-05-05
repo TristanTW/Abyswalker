@@ -21,9 +21,9 @@ public class EnemyAI : MonoBehaviour
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
 
                 // Rotate to face movement direction
-                if (direction != Vector3.zero)
+                if (direction.sqrMagnitude > 0.01f)
                 {
-                    Quaternion targetRotation = Quaternion.LookRotation(direction);
+                    Quaternion targetRotation = Quaternion.LookRotation(direction.normalized);
                     transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
                 }
             }
