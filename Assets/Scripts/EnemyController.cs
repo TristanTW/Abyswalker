@@ -2,20 +2,25 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    public Transform player;
+    private GameObject player;
     private float moveSpeed = 3f;
     private float attackRange = 2f;
+
+    private void Awake()
+    {
+        player = GameObject.FindWithTag("Player");
+    }
 
     void Update()
     {
         if (player != null)
         {
-            Vector3 targetPosition = new Vector3(player.position.x, transform.position.y, player.position.z);
+            Vector3 targetPosition = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
             float distance = Vector3.Distance(transform.position, targetPosition);
 
             if (distance > attackRange)
             {
-                transform.position = Vector3.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
             }
             else
             {
