@@ -62,7 +62,7 @@ public class CharacterControll : MonoBehaviour
     {
         Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
 
-        Plane plane = new Plane(-transform.transform.up, 0);
+        Plane plane = new Plane(-transform.transform.up, 1);
 
         if (plane.Raycast(ray, out float distance))
         {
