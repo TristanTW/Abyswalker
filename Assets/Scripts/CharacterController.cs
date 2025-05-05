@@ -6,19 +6,29 @@ public class CharacterControll : MonoBehaviour
 {
     [SerializeField]
     private float _speed;
+<<<<<<< Updated upstream
     [SerializeField]
     private Camera _camera;
 
     [SerializeField]
     private GameObject _body;
+=======
+    private float _hitPoints = 100;
+    private GameObject _character;
+    private GameObject _skeletonSword;
+>>>>>>> Stashed changes
 
     private Rigidbody _rb;
+    private Rigidbody _skellybody;
 
     Vector3 _mouseLocation = new Vector3 (0, 0, 1);
 
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
+        _skellybody = GetComponent<Rigidbody>();
+
+
     }
 
     void FixedUpdate()
@@ -44,8 +54,11 @@ public class CharacterControll : MonoBehaviour
         Vector3 movementVector = directionVector.normalized * _speed * Time.fixedDeltaTime;
 
         _rb.MovePosition(_rb.position + movementVector);
+
+
     }
 
+<<<<<<< Updated upstream
     private void Rotation()
     {
         //Vector3 mousePos = Input.mousePosition;
@@ -85,5 +98,18 @@ public class CharacterControll : MonoBehaviour
     {
 
     }
+=======
+    private void OnCollisionEnter(Collision collision)
+    {
+
+        if (collision.gameObject == _skeletonSword)
+        {
+            Debug.Log("hit");
+            _hitPoints -= 5;
+
+        }
+    }
+
+>>>>>>> Stashed changes
 }
 
