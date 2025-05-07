@@ -7,6 +7,9 @@ public class CharacterControll : MonoBehaviour
     private float _speed;
 
     [SerializeField]
+    private float _rotationSpeed;
+
+    [SerializeField]
     private Camera _camera;
 
     [SerializeField]
@@ -26,8 +29,6 @@ public class CharacterControll : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _skellybody = GetComponent<Rigidbody>();
-
-
     }
 
     void FixedUpdate()
@@ -53,16 +54,12 @@ public class CharacterControll : MonoBehaviour
         Vector3 movementVector = directionVector.normalized * _speed * Time.fixedDeltaTime;
 
         _rb.MovePosition(_rb.position + movementVector);
-
-
     }
-
 
     private void Rotation()
     {
         Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
-
-        Plane plane = new Plane(-transform.transform.up, 1);
+        Plane plane = new Plane(-transform.up, 1);
 
         if (plane.Raycast(ray, out float distance))
         {
@@ -70,8 +67,16 @@ public class CharacterControll : MonoBehaviour
         }
         _mouseLocation.y = _body.transform.position.y;
 
-
-        _body.transform.LookAt(_mouseLocation);
+        Vector3 direction = _mouseLocation - _body.transform.position;
+        if (direction.sqrMagnitude > 0.001f)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            _body.transform.rotation = Quaternion.Slerp(
+                _body.transform.rotation,
+                targetRotation,
+                Time.deltaTime * _rotationSpeed
+            );
+        }
     }
 
     private void Dodge()
@@ -86,7 +91,6 @@ public class CharacterControll : MonoBehaviour
         {
             Debug.Log("hit");
             _hitPoints -= 5;
-
         }
     }
 

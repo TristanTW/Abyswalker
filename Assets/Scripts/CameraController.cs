@@ -1,6 +1,5 @@
+using TMPro;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.UIElements;
 
 public class CameraController : MonoBehaviour
 {
@@ -13,8 +12,11 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     private Camera _followerCamera;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    //test
+    [SerializeField]
+    private float smoothTime = 0.3F;
+
+    private Vector3 velocity = Vector3.zero;
+
     void Start()
     {
         _mainCamera.transform.position = _followerCamera.transform.position;
@@ -24,13 +26,14 @@ public class CameraController : MonoBehaviour
         _mainCamera.enabled = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        Vector3 direction = _followerCamera.transform.position - _mainCamera.transform.position;
-        _mainCamera.transform.position += direction * _speed * Time.deltaTime;
+        // Vector3 direction = _followerCamera.transform.position - _mainCamera.transform.position;
+        // _mainCamera.transform.position += direction * _speed * Time.deltaTime;
 
-        _mainCamera.transform.rotation = Quaternion.Lerp(_mainCamera.transform.rotation, _followerCamera.transform.rotation, _speed * Time.deltaTime);
+        _mainCamera.transform.position = Vector3.SmoothDamp(_mainCamera.transform.position, _followerCamera.transform.position, ref velocity, smoothTime);
+
+        // _mainCamera.transform.rotation = Quaternion.Lerp(_mainCamera.transform.rotation, _followerCamera.transform.rotation, _speed * Time.deltaTime);
 
         //_mainCamera.transform.position = Vector3.Lerp(_mainCamera.transform.position, _followerCamera.transform.position, _speed);
     }

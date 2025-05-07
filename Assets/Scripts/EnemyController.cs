@@ -5,7 +5,6 @@ public class EnemyAI : MonoBehaviour
     private GameObject player;
     private float moveSpeed = 3f;
     private float attackRange = 2f;
-    private float rotationSpeed = 10f;
 
     private void Awake()
     {
@@ -23,12 +22,6 @@ public class EnemyAI : MonoBehaviour
             if (distance > attackRange)
             {
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
-
-                if (direction.sqrMagnitude > 0.01f)
-                {
-                    Quaternion targetRotation = Quaternion.LookRotation(direction.normalized);
-                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-                }
             }
             else
             {
