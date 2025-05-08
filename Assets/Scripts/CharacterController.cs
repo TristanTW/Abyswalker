@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using UnityEngine;
 
 public class CharacterControll : MonoBehaviour
@@ -23,7 +24,16 @@ public class CharacterControll : MonoBehaviour
     private Rigidbody _rb;
     private Rigidbody _skellybody;
 
-    Vector3 _mouseLocation = new Vector3(0, 0, 1);
+    private Vector3 _lookDirection = new Vector3(1, 0, 0);
+    private bool _isDodging = false;
+    private Stopwatch _dodgeTimer = new Stopwatch();
+    [SerializeField]
+    private float _dodgePower = 10;
+    [SerializeField]
+    private float _dodgeCooldown = 1;
+
+    private Vector3 _mouseLocation = new Vector3(0, 0, 1);
+    
 
     void Start()
     {
@@ -33,7 +43,10 @@ public class CharacterControll : MonoBehaviour
 
     void FixedUpdate()
     {
-        Movement();
+        if (!_isDodging)
+        {
+            Movement();
+        }
         Rotation();
         Dodge();
     }
@@ -77,11 +90,23 @@ public class CharacterControll : MonoBehaviour
                 Time.deltaTime * _rotationSpeed
             );
         }
+        _lookDirection = direction.normalized;
     }
 
     private void Dodge()
     {
-
+        if (Input.GetKey(KeyCode.Space) && _isDodging == false)
+        {
+            _rb.AddForce(_lookDirection * _dodgePower, ForceMode.Impulse);
+            _isDodging = true;
+            _dodgeTimer.Restart();
+        }
+        if ((float)_dodgeTimer.ElapsedMilliseconds / 1000 >= _dodgeCooldown)
+        {
+            _isDodging = false;
+            _dodgeTimer.Stop();
+            _rb.angularVelocity = Vector3.zero;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -89,7 +114,7 @@ public class CharacterControll : MonoBehaviour
 
         if (collision.gameObject == _skeletonSword)
         {
-            Debug.Log("hit");
+            UnityEngine.Debug.Log("hit");
             _hitPoints -= 5;
         }
     }
