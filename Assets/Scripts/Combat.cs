@@ -5,7 +5,9 @@ public class Combat : MonoBehaviour
 {
 
     public float attackRange = 1.5f;
+    [SerializeField]
     public float lightAttackDamage = 5f;
+    [SerializeField]
     public float heavyAttackDamage = 10f;
     public Transform attackPoint; // Assign this in the inspector
     public LayerMask enemyLayers; // Assign this to “Hydra” layer or tag
