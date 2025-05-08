@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CharacterControll : MonoBehaviour
@@ -31,6 +32,8 @@ public class CharacterControll : MonoBehaviour
     private float _dodgePower = 10;
     [SerializeField]
     private float _dodgeCooldown = 1;
+    [SerializeField]
+    private bool _rollThroughEnemy = false;
 
     private Vector3 _mouseLocation = new Vector3(0, 0, 1);
     
@@ -100,12 +103,14 @@ public class CharacterControll : MonoBehaviour
             _rb.AddForce(_lookDirection * _dodgePower, ForceMode.Impulse);
             _isDodging = true;
             _dodgeTimer.Restart();
+            if (_rollThroughEnemy) GetComponent<CapsuleCollider>().excludeLayers = LayerMask.GetMask("Enemy");
         }
         if ((float)_dodgeTimer.ElapsedMilliseconds / 1000 >= _dodgeCooldown)
         {
             _isDodging = false;
             _dodgeTimer.Stop();
             _rb.angularVelocity = Vector3.zero;
+            if (_rollThroughEnemy) GetComponent<CapsuleCollider>().excludeLayers = LayerMask.GetMask("");
         }
     }
 
