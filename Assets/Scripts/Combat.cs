@@ -78,7 +78,7 @@ public class Combat : MonoBehaviour
                 if (enemy != null)
                 {
                     float damage = (type == "Light") ? 10f : 25f;
-                    enemy.TakeDamage(damage);
+                    EnemyHealth.TakeDamage(damage);
                 }
             }
         }
