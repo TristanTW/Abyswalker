@@ -77,15 +77,15 @@ public class Combat : MonoBehaviour
 
         foreach (Collider enemy in hitEnemies)
         {
-            EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
-            if (enemyHealth != null)
+            EnemyController enemyController = enemy.GetComponent<EnemyController>();
+            if (enemyController != null)
             {
                 float damage = (type == "Light") ? 10f : 25f;
-                enemyHealth.TakeDamage(damage);
+                enemyController.TakeDamage(damage);
             }
             else
             {
-                Debug.LogWarning("Enemy does not have an EnemyHealth component.");
+                Debug.LogWarning("Enemy does not have an EnemyController component.");
             }
         }
 
