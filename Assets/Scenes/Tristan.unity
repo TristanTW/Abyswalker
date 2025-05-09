@@ -1696,7 +1696,7 @@ MonoBehaviour:
   _topBeam: {fileID: 829180157}
   _bottomBeam: {fileID: 1561388046}
   _gateSpeed: 0.005
-  _gateOpenTest: 1
+  _gateOpenTest: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
