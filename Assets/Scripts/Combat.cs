@@ -70,7 +70,10 @@ public class Combat : MonoBehaviour
 
         // Attack check - adjust range as needed
         float attackRange = 2f;
-        Collider[] hitEnemies = Physics.OverlapSphere(transform.position + transform.forward, attackRange);
+        Vector3 lookDirection = GetComponent<CharacterControll>().LookDirection;
+        Vector3 attackOrigin = transform.position + lookDirection;
+        Collider[] hitEnemies = Physics.OverlapSphere(attackOrigin, attackRange);
+
 
         foreach (Collider enemy in hitEnemies)
         {
@@ -91,9 +94,14 @@ public class Combat : MonoBehaviour
     }
     void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position + transform.forward, 2f);
+        if (Application.isPlaying)
+        {
+            Vector3 lookDirection = GetComponent<CharacterControll>().LookDirection;
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position + lookDirection, 2f);
+        }
     }
+
     // Optional: expose blocking state
     public bool IsBlocking()
     {
