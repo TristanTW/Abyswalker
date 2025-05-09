@@ -18,7 +18,7 @@ public class CharacterControll : MonoBehaviour
     [SerializeField]
     private GameObject _body;
 
-    public float _hitPoints = 100;
+    private float _hitPoints = 100;
     private GameObject _character;
     private GameObject _skeletonSword;
 

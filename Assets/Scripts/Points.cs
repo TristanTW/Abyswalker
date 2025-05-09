@@ -26,15 +26,18 @@ public class Points : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (pointsUIScript != null)
+        if (other.CompareTag("PlayerTrigger"))
         {
-            pointsUIScript.AddPoints(1);
-            //sound
-            _audioSource.clip = _collectPoints;
-            _audioSource.Play();
-            //end sound
-        }
+            if (pointsUIScript != null)
+            {
+                pointsUIScript.AddPoints(1);
+                //sound
+                _audioSource.clip = _collectPoints;
+                _audioSource.Play();
+                //end sound
+            }
 
-        Destroy(gameObject);
+            Destroy(gameObject);
+        }
     }
 }
