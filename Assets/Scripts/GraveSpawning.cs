@@ -7,36 +7,41 @@ public class GraveSpawning : MonoBehaviour
     public float radius;
     public int maxGraveAmount;
 
+    public EnemySpawning enemySpawner; // Reference to the EnemySpawning script
+
     GameObject player;
-
-    Vector3 colliderSize;
-
     int graveAmount;
 
     private void Awake()
     {
-        Transform colliderTransform = roomCollider.GetComponent<Transform>();
-
-        colliderSize.x = colliderTransform.localScale.x;
-        colliderSize.z = colliderTransform.localScale.z;
-
         player = GameObject.FindWithTag("Player");
     }
 
-    private void Update()
+    public void StartSpawning()
     {
-        SpawnGravesAround();
-    }
-
-    private void SpawnGravesAround()
-    {
-        if (graveAmount < maxGraveAmount)
+        // Spawn graves only if the graveAmount is less than the max
+        while (graveAmount < maxGraveAmount)
         {
             var spawnPosition = GetValidSpawnPointOnCircle(radius, roomCollider);
             if (spawnPosition != null)
             {
                 graveAmount++;
                 GameObject graveObject = Instantiate(graveSpawn, spawnPosition.Value, Quaternion.identity);
+
+                // Spawn an enemy at the grave's position using the EnemySpawning script
+                if (enemySpawner != null)
+                {
+                    enemySpawner.parent = graveObject;  // Set the grave as the parent for the enemy
+                    enemySpawner.Spawn();  // Spawn the enemy at this position
+                }
+                else
+                {
+                    Debug.LogWarning("EnemySpawning component is not assigned!");
+                }
+            }
+            else
+            {
+                break; // Exit if no valid position found
             }
         }
     }
@@ -59,12 +64,11 @@ public class GraveSpawning : MonoBehaviour
             }
         }
 
-        return null;
+        return null; // Return null if no valid position found
     }
 
     private bool IsPointInsideCollider(Collider col, Vector3 point)
     {
         return col.bounds.Contains(point);
     }
-
 }
