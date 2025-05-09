@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 184672415494209451}
   - component: {fileID: 9127161471638931884}
   - component: {fileID: 8424829502126633382}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: baseModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,9 +148,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5019581207619392224}
   - component: {fileID: 8567822745410603210}
-  m_Layer: 0
+  - component: {fileID: -2861326095502708504}
+  m_Layer: 6
   m_Name: SkeletonAI
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -183,3 +184,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d5910278c1df8840aa05274d1e1ceb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-2861326095502708504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7406066032748404076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0facf37550e3ba4479be8b8f460501d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  healthBarCanvas: {fileID: 0}
+  healthFillImage: {fileID: 0}
