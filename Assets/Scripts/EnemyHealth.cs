@@ -6,32 +6,58 @@ public class EnemyHealth : MonoBehaviour
     public float maxHealth = 100f;
     private float currentHealth;
 
-    public Slider EnemyHealthBar;
+    public Transform healthBarCanvas; // The world space canvas above the enemy
+    public Image healthFillImage;     // The green fill bar (inside canvas)
+    private Camera mainCamera;
+    private float targetFill = 1f;    // For smooth fill animation
+
     private bool playerNearby = false;
 
     void Start()
     {
+        mainCamera = Camera.main;
         currentHealth = maxHealth;
-        if (EnemyHealthBar != null)
+        healthBarCanvas.gameObject.SetActive(true);
+        if (healthFillImage != null)
         {
-            EnemyHealthBar.maxValue = maxHealth;
-            EnemyHealthBar.value = currentHealth;
-            EnemyHealthBar.gameObject.SetActive(false); // Hide initially
+            healthFillImage.rectTransform.localScale = new Vector3(1f, 1f, 1f);
+        }
+
+        
+    }
+
+    void Update()
+    {
+        if (healthBarCanvas != null)
+        {
+            healthBarCanvas.LookAt(mainCamera.transform);
+        }
+
+        if (healthFillImage != null)
+        {
+            Vector3 currentScale = healthFillImage.rectTransform.localScale;
+            float smoothFill = Mathf.Lerp(currentScale.x, targetFill, Time.deltaTime * 10f);
+            healthFillImage.rectTransform.localScale = new Vector3(smoothFill, 1f, 1f);
         }
     }
+
 
     public void TakeDamage(float amount)
     {
         currentHealth -= amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
-        if (EnemyHealthBar != null)
+        Debug.Log($"[TakeDamage] Damage: {amount}, Health: {currentHealth}");
+
+        if (healthFillImage != null)
         {
-            EnemyHealthBar.value = currentHealth;
+            targetFill = currentHealth / maxHealth;
         }
 
-        if (currentHealth <= 0)
+        if (currentHealth <= 0.01f)
+
         {
+            Debug.Log("[TakeDamage] Health is zero or less. Calling Die().");
             Die();
         }
     }
@@ -39,8 +65,9 @@ public class EnemyHealth : MonoBehaviour
     void Die()
     {
         Debug.Log("Enemy defeated!");
-        if (EnemyHealthBar != null)
-            EnemyHealthBar.gameObject.SetActive(false);
+        if (healthBarCanvas != null)
+            healthBarCanvas.gameObject.SetActive(false);
+
 
         Destroy(gameObject);
     }
@@ -50,8 +77,9 @@ public class EnemyHealth : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerNearby = true;
-            if (EnemyHealthBar != null)
-                EnemyHealthBar.gameObject.SetActive(true);
+            if (healthBarCanvas != null)
+                healthBarCanvas.gameObject.SetActive(true);
+
         }
     }
 
@@ -60,8 +88,9 @@ public class EnemyHealth : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerNearby = false;
-            if (EnemyHealthBar != null)
-                EnemyHealthBar.gameObject.SetActive(false);
+            if (healthBarCanvas != null)
+                healthBarCanvas.gameObject.SetActive(true);
+
         }
     }
 }
