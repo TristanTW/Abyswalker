@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 301045738}
   - component: {fileID: 301045740}
   - component: {fileID: 301045739}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TempDirection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1132,7 +1132,7 @@ GameObject:
   - component: {fileID: 1293627823}
   - component: {fileID: 1293627822}
   - component: {fileID: 1293627821}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FollowerCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1269,7 +1269,7 @@ GameObject:
   - component: {fileID: 1376294884}
   - component: {fileID: 1376294883}
   - component: {fileID: 1376294882}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1597,10 +1597,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07a55fca0f79a4d489dd2a8d4c389dcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _audioSource: {fileID: 0}
+  _recieveDamage: {fileID: 0}
   _speed: 10
   _rotationSpeed: 10
   _camera: {fileID: 330585545}
   _body: {fileID: 1376294881}
+  _hitPoints: 100
   _lookDirection: {x: 1, y: 0, z: 0}
   _dodgePower: 10
   _dodgeCooldown: 1
@@ -1755,7 +1758,7 @@ MonoBehaviour:
   _backZone: {fileID: 155463573}
   _enemyLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 64
   _gateSpeed: 0.005
   _gateOpenTest: 0
 --- !u!1 &2113888075
