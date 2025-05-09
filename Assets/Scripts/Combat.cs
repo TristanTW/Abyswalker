@@ -50,6 +50,7 @@ public class Combat : MonoBehaviour
         {
             lastAttackTime = Time.time;
             StartCoroutine(PerformAttack("Light"));
+            
         }
 
         // Heavy attack
