@@ -16,4 +16,9 @@ public class PointsCounterScript : MonoBehaviour
     {
         _pointsCounter.text = _currentPoints.ToString();
     }
+
+    public void AddPoints(float amount)
+    {
+        _currentPoints += amount;
+    }
 }

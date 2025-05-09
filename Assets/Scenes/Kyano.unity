@@ -252,6 +252,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -408.71655
       objectReference: {fileID: 0}
+    - target: {fileID: 3719187881980567406, guid: da1695abad7e95e47840b789169419d8, type: 3}
+      propertyPath: m_VertexColorAlwaysGammaSpace
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3719187881980567406, guid: da1695abad7e95e47840b789169419d8, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3883973143399326565, guid: da1695abad7e95e47840b789169419d8, type: 3}
       propertyPath: m_Pivot.x
       value: 0
