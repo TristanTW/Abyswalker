@@ -910,6 +910,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1875444700608378373, guid: da1695abad7e95e47840b789169419d8, type: 3}
+      propertyPath: m_TagString
+      value: HealthBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 3549949976620235127, guid: da1695abad7e95e47840b789169419d8, type: 3}
+      propertyPath: m_TagString
+      value: PointCounter
+      objectReference: {fileID: 0}
     - target: {fileID: 3883973143399326565, guid: da1695abad7e95e47840b789169419d8, type: 3}
       propertyPath: m_Pivot.x
       value: 0
