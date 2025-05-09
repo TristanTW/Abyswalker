@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class CharacterControll : MonoBehaviour
 {
-    [SerializeField] private AudioSource _audioSource;
+    
     [SerializeField] private AudioClip _recieveDamage;
 
     [SerializeField]
@@ -126,8 +126,8 @@ public class CharacterControll : MonoBehaviour
             _hitPoints -= 5;
 
             //sound
-
-            _audioSource.PlayOneShot(_recieveDamage);
+            AudioControllerScript audioControllerScript = GetComponent<AudioControllerScript>();
+            audioControllerScript.PlaySound(_recieveDamage);
             //end sound
         }
     }

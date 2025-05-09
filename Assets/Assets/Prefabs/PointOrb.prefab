@@ -133,7 +133,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22f4953f2886a614d8f6a55af1dc4295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioSource: {fileID: -823935498595878155}
   _collectPoints: {fileID: 8300000, guid: f7c361e27b4846f498907caf9dfcdfda, type: 3}
 --- !u!135 &5322581842841569003
 SphereCollider:
@@ -163,7 +162,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3457042226878069100}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}

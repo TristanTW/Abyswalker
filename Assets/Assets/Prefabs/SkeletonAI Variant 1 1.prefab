@@ -226,7 +226,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d5910278c1df8840aa05274d1e1ceb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioSource: {fileID: 7541938432610914439}
   _doDamage: {fileID: 8300000, guid: fc9992cbc6f730d44b2f55777c655d56, type: 3}
   pointOrb: {fileID: 3457042226878069100, guid: b7e43bd15c4b96944b7deadaf75b9e47, type: 3}
   maxHealth: 100
@@ -291,7 +290,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2990585846229932101}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}

@@ -78,13 +78,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07a55fca0f79a4d489dd2a8d4c389dcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioSource: {fileID: 1678133854217224472}
   _recieveDamage: {fileID: 8300000, guid: afea7774583207c4b8e1cb68aa59af71, type: 3}
   _speed: 10
   _rotationSpeed: 10
   _camera: {fileID: 0}
   _body: {fileID: 8252542705246200308}
-  _hitPoints: 100
   _lookDirection: {x: 1, y: 0, z: 0}
   _dodgePower: 10
   _dodgeCooldown: 1
@@ -124,7 +122,7 @@ MonoBehaviour:
   attackPoint: {fileID: 0}
   enemyLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   lightAttackCooldown: 0.5
   heavyAttackCooldown: 1
 --- !u!82 &1678133854217224472
@@ -134,7 +132,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919375979576068827}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
