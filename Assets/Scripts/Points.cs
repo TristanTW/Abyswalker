@@ -32,8 +32,8 @@ public class Points : MonoBehaviour
             {
                 pointsUIScript.AddPoints(1);
                 //sound
-                _audioSource.clip = _collectPoints;
-                _audioSource.Play();
+                
+                _audioSource.PlayOneShot(_collectPoints);
                 //end sound
             }
 
