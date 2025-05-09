@@ -25,7 +25,7 @@ public class CharacterControll : MonoBehaviour
     private Rigidbody _rb;
     private Rigidbody _skellybody;
 
-    private Vector3 _lookDirection = new Vector3(1, 0, 0);
+    public Vector3 _lookDirection = new Vector3(1, 0, 0);
     private bool _isDodging = false;
     private Stopwatch _dodgeTimer = new Stopwatch();
     [SerializeField]
