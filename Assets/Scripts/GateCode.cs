@@ -12,6 +12,16 @@ public class GateCode : MonoBehaviour
     [SerializeField]
     private GameObject _bottomBeam;
 
+    [SerializeField] 
+    private GameObject _frontZone;
+    [SerializeField]
+    private GameObject _backZone;
+    private Collider _frontCollider;
+    private Collider _backCollider;
+
+    [SerializeField]
+    private LayerMask _enemyLayer;
+
     [SerializeField]
     private float _gateSpeed;
 
@@ -30,6 +40,9 @@ public class GateCode : MonoBehaviour
         _rightGateClosed = _rightGate.transform.position;
         _topBeamClosed = _topBeam.transform.position;
         _bottomBeamClosed = _bottomBeam.transform.position;
+
+        _frontCollider = _frontZone.GetComponent<Collider>();
+        _backCollider = _backZone.GetComponent<Collider>();
     }
 
     // Update is called once per frame
@@ -51,6 +64,8 @@ public class GateCode : MonoBehaviour
             MoveGatePart(_bottomBeam, _bottomBeamClosed, 0);
         }
         _isOpen = _gateOpenTest;
+
+        EnemyInZone(_frontZone, _backZone);
     }
 
     private void MoveGatePart(GameObject gatePart, Vector3 closedPoint, float distance)
@@ -59,5 +74,19 @@ public class GateCode : MonoBehaviour
         {
             gatePart.transform.position = Vector3.Lerp(gatePart.transform.position, new Vector3(closedPoint.x, closedPoint.y, closedPoint.z + distance), _gateSpeed);
         }
+    }
+
+    private void EnemyInZone(GameObject zone1, GameObject zone2)
+    {
+        if (Physics.CheckBox(zone1.transform.position, new Vector3(zone1.transform.localScale.x / 2, zone1.transform.localScale.y / 2, zone1.transform.localScale.z / 2), zone1.transform.rotation, _enemyLayer))
+        {
+            _isOpen = false;
+        }
+        else _isOpen = true;
+        if (Physics.CheckBox(zone2.transform.position, new Vector3(zone2.transform.localScale.x / 2, zone2.transform.localScale.y / 2, zone2.transform.localScale.z / 2), zone2.transform.rotation, _enemyLayer))
+        {
+            _isOpen = false;
+        }
+        else _isOpen = true;
     }
 }
