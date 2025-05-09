@@ -3,6 +3,8 @@ using UnityEngine;
 public class Points : MonoBehaviour
 {
     private PointsCounterScript pointsUIScript;
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip _collectPoints;
 
     void Start()
     {
@@ -27,6 +29,10 @@ public class Points : MonoBehaviour
         if (pointsUIScript != null)
         {
             pointsUIScript.AddPoints(1);
+            //sound
+            _audioSource.clip = _collectPoints;
+            _audioSource.Play();
+            //end sound
         }
 
         Destroy(gameObject);
