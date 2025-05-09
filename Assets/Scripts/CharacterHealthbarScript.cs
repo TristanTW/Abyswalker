@@ -30,6 +30,6 @@ public class CharacterHealthbarScript : MonoBehaviour
 
     void Update()
     {
-        healthBarSlider.value = characterControllerScript.PushHealth();
+        healthBarSlider.value = characterControllerScript.ReturnHealth();
     }
 }

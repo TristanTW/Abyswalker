@@ -1,6 +1,4 @@
-using System;
 using System.Diagnostics;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class CharacterControll : MonoBehaviour
@@ -134,11 +132,13 @@ public class CharacterControll : MonoBehaviour
         }
     }
 
-    public float PushHealth()
+    public float ReturnHealth()
     {
         return _hitPoints;
     }
 
-
+    public void TakeDamage(float damage)
+    {
+        _hitPoints -= damage;
+    }
 }
-

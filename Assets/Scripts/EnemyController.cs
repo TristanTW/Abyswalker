@@ -19,7 +19,13 @@ public class EnemyController : MonoBehaviour
     private Camera mainCamera;
     private float targetFill = 1f;
 
+    public float damage = 10f;
+    public float damageCooldown = 10f;
+    private float damageCooldownTimer;
+
     private bool playerNearby = false;
+
+    private CharacterControll characterControllerScript;
 
     private void Awake()
     {
@@ -28,6 +34,21 @@ public class EnemyController : MonoBehaviour
 
     void Start()
     {
+        damageCooldownTimer = damageCooldown;
+
+        if (player != null)
+        {
+            characterControllerScript = player.GetComponent<CharacterControll>();
+            if (characterControllerScript == null)
+            {
+                Debug.LogError("CharacterControllerScript not found on the Player object.");
+            }
+        }
+        else
+        {
+            Debug.LogError("Player GameObject not found with the tag 'Player'.");
+        }
+
         mainCamera = Camera.main;
         currentHealth = maxHealth;
         healthBarCanvas.gameObject.SetActive(true);
@@ -70,7 +91,15 @@ public class EnemyController : MonoBehaviour
 
     void Attack()
     {
-        Debug.Log("Enemy is aan het attacken");
+        if (damageCooldownTimer >= damageCooldown)
+        {
+            characterControllerScript.TakeDamage(damage);
+            damageCooldownTimer = 0f;
+        }
+        else
+        {
+            damageCooldownTimer += Time.deltaTime;
+        }
     }
 
     public void TakeDamage(float amount)
