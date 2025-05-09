@@ -134,6 +134,11 @@ public class CharacterControll : MonoBehaviour
         }
     }
 
+    public float PushHealth()
+    {
+        return _hitPoints;
+    }
+
 
 }
 
