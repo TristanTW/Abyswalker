@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
 {
+    public GameObject pointOrb;
     private GameObject player;
     private float moveSpeed = 3f;
     private float attackRange = 2f;
@@ -95,8 +96,13 @@ public class EnemyController : MonoBehaviour
         if (healthBarCanvas != null)
             healthBarCanvas.gameObject.SetActive(false);
 
+        Vector2 deathLocation = new Vector2(transform.position.x, transform.position.z);
 
         Destroy(gameObject);
+
+        Vector3 deathDropSpawnLocation = new Vector3(deathLocation.x, 1, deathLocation.y);
+
+        GameObject deathDrop = Instantiate(pointOrb, deathDropSpawnLocation, Quaternion.identity);
     }
 
     void OnTriggerEnter(Collider other)
