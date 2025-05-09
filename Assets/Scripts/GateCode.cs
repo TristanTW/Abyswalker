@@ -78,12 +78,8 @@ public class GateCode : MonoBehaviour
 
     private void EnemyInZone(GameObject zone1, GameObject zone2)
     {
-        if (Physics.CheckBox(zone1.transform.position, new Vector3(zone1.transform.localScale.x / 2, zone1.transform.localScale.y / 2, zone1.transform.localScale.z / 2), zone1.transform.rotation, _enemyLayer))
-        {
-            _isOpen = false;
-        }
-        else _isOpen = true;
-        if (Physics.CheckBox(zone2.transform.position, new Vector3(zone2.transform.localScale.x / 2, zone2.transform.localScale.y / 2, zone2.transform.localScale.z / 2), zone2.transform.rotation, _enemyLayer))
+        if (Physics.CheckBox(zone1.transform.position, new Vector3(zone1.transform.localScale.x / 2, zone1.transform.localScale.y / 2, zone1.transform.localScale.z / 2), zone1.transform.rotation, _enemyLayer)
+         || Physics.CheckBox(zone2.transform.position, new Vector3(zone2.transform.localScale.x / 2, zone2.transform.localScale.y / 2, zone2.transform.localScale.z / 2), zone2.transform.rotation, _enemyLayer))
         {
             _isOpen = false;
         }
