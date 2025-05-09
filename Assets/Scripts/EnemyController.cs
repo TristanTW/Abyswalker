@@ -105,8 +105,8 @@ public class EnemyController : MonoBehaviour
     public void TakeDamage(float amount)
     {
         //sound
-        _audioSource.clip = _doDamage;
-        _audioSource.Play();
+
+        _audioSource.PlayOneShot(_doDamage);
         //end sound
 
 

@@ -39,7 +39,7 @@ public class CharacterControll : MonoBehaviour
     private bool _rollThroughEnemy = false;
 
     private Vector3 _mouseLocation = new Vector3(0, 0, 1);
-    
+
 
     void Start()
     {
@@ -126,8 +126,8 @@ public class CharacterControll : MonoBehaviour
             _hitPoints -= 5;
 
             //sound
-            _audioSource.clip = _recieveDamage;
-            _audioSource.Play();
+
+            _audioSource.PlayOneShot(_recieveDamage);
             //end sound
         }
     }
