@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
 {
-    
+
     [SerializeField] private AudioClip _doDamage;
 
     public GameObject pointOrb;
@@ -101,12 +101,11 @@ public class EnemyController : MonoBehaviour
             damageCooldownTimer += Time.deltaTime;
         }
     }
-
+    
     public void TakeDamage(float amount)
     {
         //sound
-        AudioControllerScript audioControllerScript = GetComponent<AudioControllerScript>();
-        audioControllerScript.PlaySound(_doDamage);
+        AudioControllerScript.Instance.PlaySound(_doDamage);
         //end sound
 
 

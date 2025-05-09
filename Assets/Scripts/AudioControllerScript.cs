@@ -4,11 +4,11 @@ public class AudioControllerScript : MonoBehaviour
 {
     [SerializeField] private AudioSource _audioSource;
 
+    public static AudioControllerScript Instance { get; private set; }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Start()
     {
-
+        Instance = this;
     }
 
     // Update is called once per frame

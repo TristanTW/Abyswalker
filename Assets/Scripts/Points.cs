@@ -32,9 +32,7 @@ public class Points : MonoBehaviour
             {
                 pointsUIScript.AddPoints(1);
                 //sound
-                AudioControllerScript audioControllerScript = GetComponent<AudioControllerScript>();
-                audioControllerScript.PlaySound(_collectPoints);
-                
+                AudioControllerScript.Instance.PlaySound(_collectPoints);
                 //end sound
             }
 

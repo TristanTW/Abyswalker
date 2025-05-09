@@ -1072,6 +1072,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioSource
       objectReference: {fileID: 0}
+    - target: {fileID: 8899321455108927307, guid: 7cb395d12166d564188d42361eb9bfcf, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1466,7 +1470,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919375979576068827, guid: 29436cdabc8684c4b97f766ae0e99130, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 919375979576068827, guid: 29436cdabc8684c4b97f766ae0e99130, type: 3}
       propertyPath: m_TagString
@@ -1490,7 +1494,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5379731658222555472, guid: 29436cdabc8684c4b97f766ae0e99130, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6365965303491879031, guid: 29436cdabc8684c4b97f766ae0e99130, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1538,11 +1542,11 @@ PrefabInstance:
       objectReference: {fileID: 2021222054}
     - target: {fileID: 8184488483031759590, guid: 29436cdabc8684c4b97f766ae0e99130, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8252542705246200308, guid: 29436cdabc8684c4b97f766ae0e99130, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8252542705246200308, guid: 29436cdabc8684c4b97f766ae0e99130, type: 3}
       propertyPath: m_TagString
