@@ -3,6 +3,9 @@ using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
 {
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip _doDamage;
+
     public GameObject pointOrb;
     private GameObject player;
     private float moveSpeed = 3f;
@@ -72,6 +75,12 @@ public class EnemyController : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
+        //sound
+        _audioSource.clip = _doDamage;
+        _audioSource.Play();
+        //end sound
+
+
         currentHealth -= amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 

@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class CharacterControll : MonoBehaviour
 {
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip _recieveDamage;
+
     [SerializeField]
     private float _speed;
 
@@ -17,7 +20,7 @@ public class CharacterControll : MonoBehaviour
     [SerializeField]
     private GameObject _body;
 
-    private float _hitPoints = 100;
+    public float _hitPoints = 100;
     private GameObject _character;
     private GameObject _skeletonSword;
 
@@ -123,7 +126,17 @@ public class CharacterControll : MonoBehaviour
         {
             UnityEngine.Debug.Log("hit");
             _hitPoints -= 5;
+
+            //sound
+            _audioSource.clip = _recieveDamage;
+            _audioSource.Play();
+            //end sound
         }
+    }
+
+    public float PushHealth()
+    {
+        return _hitPoints;
     }
 
 

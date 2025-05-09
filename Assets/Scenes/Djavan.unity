@@ -347,6 +347,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1875444700608378373, guid: da1695abad7e95e47840b789169419d8, type: 3}
+      propertyPath: m_TagString
+      value: HealthBar
+      objectReference: {fileID: 0}
     - target: {fileID: 3549949976620235127, guid: da1695abad7e95e47840b789169419d8, type: 3}
       propertyPath: m_TagString
       value: PointCounter
@@ -522,6 +526,7 @@ MonoBehaviour:
   roomCollider: {fileID: 1755916503}
   radius: 7
   maxGraveAmount: 2
+  enemySpawner: {fileID: 0}
 --- !u!114 &984494895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -534,10 +539,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07a55fca0f79a4d489dd2a8d4c389dcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _audioSource: {fileID: 0}
+  _recieveDamage: {fileID: 0}
   _speed: 10
   _rotationSpeed: 10
   _camera: {fileID: 1697212881}
   _body: {fileID: 342316907}
+  _hitPoints: 100
   _lookDirection: {x: 1, y: 0, z: 0}
   _dodgePower: 10
   _dodgeCooldown: 1
