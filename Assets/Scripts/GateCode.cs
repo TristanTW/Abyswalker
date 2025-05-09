@@ -26,8 +26,8 @@ public class GateCode : MonoBehaviour
     private float _gateSpeed;
 
     private bool _isOpen = true;
-    [SerializeField]
-    private bool _gateOpenTest = true;
+    //[SerializeField]
+    //private bool _gateOpenTest = true;
 
     private Vector3 _leftGateClosed;
     private Vector3 _rightGateClosed;
@@ -63,7 +63,7 @@ public class GateCode : MonoBehaviour
             MoveGatePart(_topBeam, _topBeamClosed, 0);
             MoveGatePart(_bottomBeam, _bottomBeamClosed, 0);
         }
-        _isOpen = _gateOpenTest;
+        //_isOpen = _gateOpenTest;
 
         EnemyInZone(_frontZone, _backZone);
     }
