@@ -1,144 +1,144 @@
-using System.Diagnostics;
-using UnityEngine;
+//using System.Diagnostics;
+//using UnityEngine;
 
-public class CharacterControll : MonoBehaviour
-{
-    [SerializeField] private AudioSource _audioSource;
-    [SerializeField] private AudioClip _recieveDamage;
+//public class CharacterControll : MonoBehaviour
+//{
+//    [SerializeField] private AudioSource _audioSource;
+//    [SerializeField] private AudioClip _recieveDamage;
 
-    [SerializeField]
-    private float _speed;
+//    [SerializeField]
+//    private float _speed;
 
-    [SerializeField]
-    private float _rotationSpeed;
+//    [SerializeField]
+//    private float _rotationSpeed;
 
-    [SerializeField]
-    private Camera _camera;
+//    [SerializeField]
+//    private Camera _camera;
 
-    [SerializeField]
-    private GameObject _body;
+//    [SerializeField]
+//    private GameObject _body;
 
-    private float _hitPoints = 100;
-    private GameObject _character;
-    private GameObject _skeletonSword;
-
-
-    private Rigidbody _rb;
-    private Rigidbody _skellybody;
-
-    public Vector3 _lookDirection = new Vector3(1, 0, 0);
-    public Vector3 LookDirection => _lookDirection;
-
-    private bool _isDodging = false;
-    private Stopwatch _dodgeTimer = new Stopwatch();
-    [SerializeField]
-    private float _dodgePower = 10;
-    [SerializeField]
-    private float _dodgeCooldown = 1;
-    [SerializeField]
-    private bool _rollThroughEnemy = false;
-
-    private Vector3 _mouseLocation = new Vector3(0, 0, 1);
+//    private float _hitPoints = 100;
+//    private GameObject _character;
+//    private GameObject _skeletonSword;
 
 
-    void Start()
-    {
-        _rb = GetComponent<Rigidbody>();
-        _skellybody = GetComponent<Rigidbody>();
-    }
+//    private Rigidbody _rb;
+//    private Rigidbody _skellybody;
 
-    void FixedUpdate()
-    {
-        if (!_isDodging)
-        {
-            Movement();
-        }
-        Rotation();
-        Dodge();
-    }
+//    public Vector3 _lookDirection = new Vector3(1, 0, 0);
+//    public Vector3 LookDirection => _lookDirection;
 
-    private void Movement()
-    {
-        int forward = 0;
-        int backward = 0;
-        int left = 0;
-        int right = 0;
+//    private bool _isDodging = false;
+//    private Stopwatch _dodgeTimer = new Stopwatch();
+//    [SerializeField]
+//    private float _dodgePower = 10;
+//    [SerializeField]
+//    private float _dodgeCooldown = 1;
+//    [SerializeField]
+//    private bool _rollThroughEnemy = false;
 
-        if (Input.GetKey(KeyCode.W)) forward = 1;
-        if (Input.GetKey(KeyCode.S)) backward = -1;
-        if (Input.GetKey(KeyCode.A)) left = -1;
-        if (Input.GetKey(KeyCode.D)) right = 1;
+//    private Vector3 _mouseLocation = new Vector3(0, 0, 1);
 
-        Vector3 directionVector = new Vector3(left + right, 0, forward + backward);
-        Vector3 movementVector = directionVector.normalized * _speed * Time.fixedDeltaTime;
 
-        _rb.MovePosition(_rb.position + movementVector);
-    }
+//    void Start()
+//    {
+//        _rb = GetComponent<Rigidbody>();
+//        _skellybody = GetComponent<Rigidbody>();
+//    }
 
-    private void Rotation()
-    {
-        Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
-        Plane plane = new Plane(-transform.up, 1);
+//    void FixedUpdate()
+//    {
+//        if (!_isDodging)
+//        {
+//            Movement();
+//        }
+//        Rotation();
+//        Dodge();
+//    }
 
-        if (plane.Raycast(ray, out float distance))
-        {
-            _mouseLocation = ray.GetPoint(distance);
-        }
-        _mouseLocation.y = _body.transform.position.y;
+//    private void Movement()
+//    {
+//        int forward = 0;
+//        int backward = 0;
+//        int left = 0;
+//        int right = 0;
 
-        Vector3 direction = _mouseLocation - _body.transform.position;
-        if (direction.sqrMagnitude > 0.001f)
-        {
-            Quaternion targetRotation = Quaternion.LookRotation(direction);
-            _body.transform.rotation = Quaternion.Slerp(
-                _body.transform.rotation,
-                targetRotation,
-                Time.deltaTime * _rotationSpeed
-            );
-        }
-        _lookDirection = direction.normalized;
-    }
+//        if (Input.GetKey(KeyCode.W)) forward = 1;
+//        if (Input.GetKey(KeyCode.S)) backward = -1;
+//        if (Input.GetKey(KeyCode.A)) left = -1;
+//        if (Input.GetKey(KeyCode.D)) right = 1;
 
-    private void Dodge()
-    {
-        if (Input.GetKey(KeyCode.Space) && _isDodging == false)
-        {
-            _rb.AddForce(_lookDirection * _dodgePower, ForceMode.Impulse);
-            _isDodging = true;
-            _dodgeTimer.Restart();
-            if (_rollThroughEnemy) GetComponent<CapsuleCollider>().excludeLayers = LayerMask.GetMask("Enemy");
-        }
-        if ((float)_dodgeTimer.ElapsedMilliseconds / 1000 >= _dodgeCooldown)
-        {
-            _isDodging = false;
-            _dodgeTimer.Stop();
-            _rb.angularVelocity = Vector3.zero;
-            if (_rollThroughEnemy) GetComponent<CapsuleCollider>().excludeLayers = LayerMask.GetMask("");
-        }
-    }
+//        Vector3 directionVector = new Vector3(left + right, 0, forward + backward);
+//        Vector3 movementVector = directionVector.normalized * _speed * Time.fixedDeltaTime;
 
-    private void OnCollisionEnter(Collision collision)
-    {
+//        _rb.MovePosition(_rb.position + movementVector);
+//    }
 
-        if (collision.gameObject == _skeletonSword)
-        {
-            UnityEngine.Debug.Log("hit");
-            _hitPoints -= 5;
+//    private void Rotation()
+//    {
+//        Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
+//        Plane plane = new Plane(-transform.up, 1);
 
-            //sound
+//        if (plane.Raycast(ray, out float distance))
+//        {
+//            _mouseLocation = ray.GetPoint(distance);
+//        }
+//        _mouseLocation.y = _body.transform.position.y;
 
-            _audioSource.PlayOneShot(_recieveDamage);
-            //end sound
-        }
-    }
+//        Vector3 direction = _mouseLocation - _body.transform.position;
+//        if (direction.sqrMagnitude > 0.001f)
+//        {
+//            Quaternion targetRotation = Quaternion.LookRotation(direction);
+//            _body.transform.rotation = Quaternion.Slerp(
+//                _body.transform.rotation,
+//                targetRotation,
+//                Time.deltaTime * _rotationSpeed
+//            );
+//        }
+//        _lookDirection = direction.normalized;
+//    }
 
-    public float ReturnHealth()
-    {
-        return _hitPoints;
-    }
+//    private void Dodge()
+//    {
+//        if (Input.GetKey(KeyCode.Space) && _isDodging == false)
+//        {
+//            _rb.AddForce(_lookDirection * _dodgePower, ForceMode.Impulse);
+//            _isDodging = true;
+//            _dodgeTimer.Restart();
+//            if (_rollThroughEnemy) GetComponent<CapsuleCollider>().excludeLayers = LayerMask.GetMask("Enemy");
+//        }
+//        if ((float)_dodgeTimer.ElapsedMilliseconds / 1000 >= _dodgeCooldown)
+//        {
+//            _isDodging = false;
+//            _dodgeTimer.Stop();
+//            _rb.angularVelocity = Vector3.zero;
+//            if (_rollThroughEnemy) GetComponent<CapsuleCollider>().excludeLayers = LayerMask.GetMask("");
+//        }
+//    }
 
-    public void TakeDamage(float damage)
-    {
-        _hitPoints -= damage;
-    }
-}
+//    private void OnCollisionEnter(Collision collision)
+//    {
+
+//        if (collision.gameObject == _skeletonSword)
+//        {
+//            UnityEngine.Debug.Log("hit");
+//            _hitPoints -= 5;
+
+//            //sound
+
+//            _audioSource.PlayOneShot(_recieveDamage);
+//            //end sound
+//        }
+//    }
+
+//    public float ReturnHealth()
+//    {
+//        return _hitPoints;
+//    }
+
+//    public void TakeDamage(float damage)
+//    {
+//        _hitPoints -= damage;
+//    }
+//}
