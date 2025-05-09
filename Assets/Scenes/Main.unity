@@ -628,7 +628,7 @@ PrefabInstance:
     - target: {fileID: 7053484584281046167, guid: c40c32743090e8949becc646f2e57374, type: 3}
       propertyPath: roomCollider
       value: 
-      objectReference: {fileID: 2021222054}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -660,7 +660,7 @@ PrefabInstance:
     - target: {fileID: 991143207360254395, guid: af1ad91561fd3cf428c6cde4bd4209ff, type: 3}
       propertyPath: roomCollider
       value: 
-      objectReference: {fileID: 2021222054}
+      objectReference: {fileID: 0}
     - target: {fileID: 3167797351185881229, guid: af1ad91561fd3cf428c6cde4bd4209ff, type: 3}
       propertyPath: m_Name
       value: Gravespawner
@@ -825,7 +825,7 @@ PrefabInstance:
     - target: {fileID: 327105804358447410, guid: f0e4a1d43a0932749abaa82551fdc39c, type: 3}
       propertyPath: roomCollider
       value: 
-      objectReference: {fileID: 2021222054}
+      objectReference: {fileID: 0}
     - target: {fileID: 776629842831113110, guid: f0e4a1d43a0932749abaa82551fdc39c, type: 3}
       propertyPath: m_Name
       value: Gravespawner 4
@@ -1266,7 +1266,7 @@ PrefabInstance:
     - target: {fileID: 6010682890971371342, guid: 7521481527e440b4fa7c2ed07ff9d38f, type: 3}
       propertyPath: roomCollider
       value: 
-      objectReference: {fileID: 2021222054}
+      objectReference: {fileID: 0}
     - target: {fileID: 6584513936063721669, guid: 7521481527e440b4fa7c2ed07ff9d38f, type: 3}
       propertyPath: m_Name
       value: Gravespawner 3
