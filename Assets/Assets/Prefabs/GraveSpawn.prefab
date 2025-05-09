@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8b9dfdc2909fc94bafd63587c4dda32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 8026781015181851926, guid: 212e0ef9a506dfb4ab57280c763f735b, type: 3}
+  enemy: {fileID: 2990585846229932101, guid: 2e7132fe0bf044e41a25553a7ff8cb9c, type: 3}
   parent: {fileID: 1084987791944913910}
 --- !u!1 &6324971048402095568
 GameObject:
