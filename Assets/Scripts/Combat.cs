@@ -94,13 +94,19 @@ public class Combat : MonoBehaviour
     }
     void OnDrawGizmosSelected()
     {
-        if (Application.isPlaying)
-        {
-            Vector3 lookDirection = GetComponent<CharacterControll>().LookDirection;
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position + lookDirection, 2f);
-        }
+        if (!Application.isPlaying) return;
+
+        // Get the real look direction from the movement script
+        CharacterControll movement = GetComponent<CharacterControll>();
+        if (movement == null) return;
+
+        Vector3 lookDirection = movement.LookDirection;
+        Vector3 attackOrigin = transform.position + lookDirection;
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(attackOrigin, attackRange);
     }
+
 
     // Optional: expose blocking state
     public bool IsBlocking()
