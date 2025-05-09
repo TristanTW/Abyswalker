@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class CharacterControll : MonoBehaviour
 {
-    [SerializeField] private AudioSource _audioSource;
+    
     [SerializeField] private AudioClip _recieveDamage;
 
     [SerializeField]
@@ -117,20 +117,6 @@ public class CharacterControll : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-
-        if (collision.gameObject == _skeletonSword)
-        {
-            UnityEngine.Debug.Log("hit");
-            _hitPoints -= 5;
-
-            //sound
-
-            _audioSource.PlayOneShot(_recieveDamage);
-            //end sound
-        }
-    }
 
     public float ReturnHealth()
     {
@@ -140,5 +126,8 @@ public class CharacterControll : MonoBehaviour
     public void TakeDamage(float damage)
     {
         _hitPoints -= damage;
+        //sound
+        AudioControllerScript.Instance.PlaySound(_recieveDamage);
+        //end sound
     }
 }
