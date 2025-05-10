@@ -1,10 +1,12 @@
 using System.Diagnostics;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterControll : MonoBehaviour
 {
-    
+
     [SerializeField] private AudioClip _recieveDamage;
+    [SerializeField] private GameObject _damageScreen;
 
     [SerializeField]
     private float _speed;
@@ -55,6 +57,17 @@ public class CharacterControll : MonoBehaviour
         }
         Rotation();
         Dodge();
+
+        //lessen damage screen
+        if (_damageScreen != null)
+        {
+            if (_damageScreen.GetComponent<Image>().color.a > 0)
+            {
+                var color = _damageScreen.GetComponent<Image>().color;
+                color.a -= 0.05f;
+                _damageScreen.GetComponent<Image>().color = color;
+            }
+        }
     }
 
     private void Movement()
@@ -129,5 +142,14 @@ public class CharacterControll : MonoBehaviour
         //sound
         AudioControllerScript.Instance.PlaySound(_recieveDamage);
         //end sound
+
+        //show jelly damage screen
+        if (_damageScreen != null)
+        {
+
+            var color = _damageScreen.GetComponent<Image>().color;
+            color.a = 1f;
+            _damageScreen.GetComponent<Image>().color = color;
+        }
     }
 }

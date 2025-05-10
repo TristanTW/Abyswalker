@@ -8,6 +8,7 @@ public class CharacterHealthbarScript : MonoBehaviour
     [SerializeField] private Slider healthBarSlider;
     [SerializeField] private float characterCurrentHealth;
 
+    [SerializeField] private GameObject DeathScreen;
     private CharacterControll characterControllerScript;
 
     void Start()
@@ -31,5 +32,14 @@ public class CharacterHealthbarScript : MonoBehaviour
     void Update()
     {
         healthBarSlider.value = characterControllerScript.ReturnHealth();
+        if(healthBarSlider.value <= 0 )
+        {
+            //die
+            if (DeathScreen != null)
+            {
+                DeathScreen.SetActive(true);
+            }
+            //pause game
+        }
     }
 }
