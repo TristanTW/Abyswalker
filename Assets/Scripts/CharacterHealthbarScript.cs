@@ -38,6 +38,7 @@ public class CharacterHealthbarScript : MonoBehaviour
             if (DeathScreen != null)
             {
                 DeathScreen.SetActive(true);
+                Time.timeScale = 0.0f;
             }
             //pause game
         }
