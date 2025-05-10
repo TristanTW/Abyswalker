@@ -106,6 +106,7 @@ public class EnemyController : MonoBehaviour
     {
         //sound
         AudioControllerScript.Instance.PlaySound(_doDamage);
+
         //end sound
 
 

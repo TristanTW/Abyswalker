@@ -15,12 +15,16 @@ public class UIbuttonScript : MonoBehaviour
 
     void Quitgame()
     {
-        Application.Quit();
+        UnityEditor.EditorApplication.isPlaying = false;
+        //Application.Quit();
+        Debug.Log("Quit");
     }
 
     void Respawn()
     {
-        var scene = SceneManager.GetActiveScene();
-        SceneManager.SetActiveScene(scene);
+        
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Debug.Log("Respawn");
+
     }
 }

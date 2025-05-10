@@ -14,7 +14,7 @@ public class AudioControllerScript : MonoBehaviour
     // Update is called once per frame
     public void PlaySound(AudioClip audioClip)
     {
-
+        
         _audioSource.PlayOneShot(audioClip);
     }
 }

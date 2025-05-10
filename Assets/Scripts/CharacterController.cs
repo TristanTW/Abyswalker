@@ -45,6 +45,7 @@ public class CharacterControll : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1.0f;
         _rb = GetComponent<Rigidbody>();
         _skellybody = GetComponent<Rigidbody>();
     }
