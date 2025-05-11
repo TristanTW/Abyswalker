@@ -62,13 +62,11 @@ public class EnemyController : MonoBehaviour
     {
         if (player != null)
         {
-            Vector3 targetPosition = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
-            Vector3 direction = targetPosition - transform.position;
-            float distance = direction.magnitude;
+            float distance = Vector3.Distance(transform.position, player.transform.position);
 
             if (distance > attackRange)
             {
-                transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
             }
             else
             {
