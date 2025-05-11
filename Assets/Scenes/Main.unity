@@ -1308,6 +1308,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0030fc45dcd4ee54186b12bddfa6269f, type: 3}
+--- !u!114 &1427313561 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 13469561896502658, guid: da1695abad7e95e47840b789169419d8, type: 3}
+  m_PrefabInstance: {fileID: 1053283326}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1543620285
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1783,6 +1794,10 @@ PrefabInstance:
       propertyPath: _damageScreen
       value: 
       objectReference: {fileID: 64715728}
+    - target: {fileID: 4830633066345398496, guid: 29436cdabc8684c4b97f766ae0e99130, type: 3}
+      propertyPath: _healCounterText
+      value: 
+      objectReference: {fileID: 1427313561}
     - target: {fileID: 5379731658222555472, guid: 29436cdabc8684c4b97f766ae0e99130, type: 3}
       propertyPath: m_Layer
       value: 7

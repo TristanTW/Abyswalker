@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,6 +26,8 @@ public class CharacterControll : MonoBehaviour
     private GameObject _skeletonSword;
 
     private float _maxHitPoints = 100;
+    [SerializeField] private int _healsRemaining = 5;
+    [SerializeField] private TextMeshProUGUI _healCounterText;
 
     private Rigidbody _rb;
     private Rigidbody _skellybody;
@@ -49,6 +52,8 @@ public class CharacterControll : MonoBehaviour
         Time.timeScale = 1.0f;
         _rb = GetComponent<Rigidbody>();
         _skellybody = GetComponent<Rigidbody>();
+
+        UpdateHealCounterUI();
     }
     private void Update()
     {
@@ -56,7 +61,7 @@ public class CharacterControll : MonoBehaviour
         {
             Healing();
         }
-            
+
 
     }
     void FixedUpdate()
@@ -67,7 +72,7 @@ public class CharacterControll : MonoBehaviour
         }
         Rotation();
         Dodge();
-       
+
         //lessen damage screen
         if (_damageScreen != null)
         {
@@ -79,16 +84,27 @@ public class CharacterControll : MonoBehaviour
             }
         }
     }
+    private void UpdateHealCounterUI()
+    {
+        _healCounterText.text = _healsRemaining.ToString();
+    }
     private void Healing()
     {
-        
-        
-           _hitPoints += 15;
+        if (_healsRemaining > 0)
+        {
+            _hitPoints += 15;
             if (_hitPoints > _maxHitPoints)
             {
                 _hitPoints = _maxHitPoints;
             }
-        
+
+            _healsRemaining--;
+            UpdateHealCounterUI();
+        }
+        else
+        {
+            
+        }
     }
     private void Movement()
     {
