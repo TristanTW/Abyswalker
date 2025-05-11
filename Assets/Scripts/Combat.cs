@@ -81,7 +81,7 @@ public class Combat : MonoBehaviour
             EnemyController enemyController = enemy.GetComponent<EnemyController>();
             if (enemyController != null)
             {
-                float damage = (type == "Light") ? 10f : 25f;
+                float damage = (type == "Light") ? lightAttackDamage : heavyAttackDamage;
                 enemyController.TakeDamage(damage);
             }
             else
