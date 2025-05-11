@@ -231,7 +231,7 @@ MonoBehaviour:
   healthBarCanvas: {fileID: 1174445516381839295}
   healthFillImage: {fileID: 8207657004764583602}
   damage: 10
-  damageCooldown: 1
+  damageCooldown: 2
 --- !u!136 &2140786422589301083
 CapsuleCollider:
   m_ObjectHideFlags: 0

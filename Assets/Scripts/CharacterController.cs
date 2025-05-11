@@ -24,6 +24,7 @@ public class CharacterControll : MonoBehaviour
     private GameObject _character;
     private GameObject _skeletonSword;
 
+    private float _maxHitPoints = 100;
 
     private Rigidbody _rb;
     private Rigidbody _skellybody;
@@ -49,7 +50,15 @@ public class CharacterControll : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
         _skellybody = GetComponent<Rigidbody>();
     }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Healing();
+        }
+            
 
+    }
     void FixedUpdate()
     {
         if (!_isDodging)
@@ -58,7 +67,7 @@ public class CharacterControll : MonoBehaviour
         }
         Rotation();
         Dodge();
-
+       
         //lessen damage screen
         if (_damageScreen != null)
         {
@@ -70,7 +79,17 @@ public class CharacterControll : MonoBehaviour
             }
         }
     }
-
+    private void Healing()
+    {
+        
+        
+           _hitPoints += 15;
+            if (_hitPoints > _maxHitPoints)
+            {
+                _hitPoints = _maxHitPoints;
+            }
+        
+    }
     private void Movement()
     {
         int forward = 0;
