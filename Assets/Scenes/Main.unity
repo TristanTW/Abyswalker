@@ -2029,9 +2029,17 @@ PrefabInstance:
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4830633066345398496, guid: 29436cdabc8684c4b97f766ae0e99130, type: 3}
+      propertyPath: hitMat
+      value: 
+      objectReference: {fileID: 2100000, guid: 27e0296a54f0c0c4ca8039b21f804270, type: 2}
+    - target: {fileID: 4830633066345398496, guid: 29436cdabc8684c4b97f766ae0e99130, type: 3}
       propertyPath: _camera
       value: 
       objectReference: {fileID: 330585545}
+    - target: {fileID: 4830633066345398496, guid: 29436cdabc8684c4b97f766ae0e99130, type: 3}
+      propertyPath: defaultMat
+      value: 
+      objectReference: {fileID: 2100000, guid: 230668bd2ee40254d826f8e8e789736f, type: 2}
     - target: {fileID: 4830633066345398496, guid: 29436cdabc8684c4b97f766ae0e99130, type: 3}
       propertyPath: _damageScreen
       value: 
@@ -2084,6 +2092,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6914165348956216437, guid: 29436cdabc8684c4b97f766ae0e99130, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d727ae0c798f2db46a9a97483555dfaf, type: 2}
     - target: {fileID: 8866980436968214852, guid: 29436cdabc8684c4b97f766ae0e99130, type: 3}
       propertyPath: m_Enabled
       value: 0
