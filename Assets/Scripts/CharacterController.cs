@@ -49,14 +49,11 @@ public class CharacterControll : MonoBehaviour
 
     public int movementCooldown = 0;
 
-<<<<<<< Updated upstream
     public bool canDodge = true;
 
-=======
     public Material defaultMat;
     public Material hitMat;
-    public float resetMaterialDelay = 0.2f; // Duration before reverting to default
->>>>>>> Stashed changes
+    public float resetMaterialDelay = 0.2f;
 
     void Start()
     {
