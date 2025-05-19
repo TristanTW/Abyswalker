@@ -9,6 +9,7 @@ public class EnemyController : MonoBehaviour
     private Combat combatScript;
 
     public GameObject _body;
+    public Rigidbody _rb;
     public GameObject pointOrb;
 
     private bool isRecharging = false;
@@ -37,6 +38,9 @@ public class EnemyController : MonoBehaviour
     public Material defaultMat;
     public Material hitMat;
     public float resetMaterialDelay = 0.2f;
+
+    private float _knockbackPowerLight = 5;
+    private float _knockbackPowerHeavy = 8;
 
     private void Awake()
     {
@@ -143,7 +147,18 @@ public class EnemyController : MonoBehaviour
         // Start coroutine to revert back
         StartCoroutine(ResetMaterialAfterDelay());
 
-        currentHealth -= amount;
+        if (type == "Light")
+        {
+            _rb.AddForce(characterControllerScript._lookDirection * _knockbackPowerLight, ForceMode.Impulse);
+        } else if (type == "Heavy")
+        {
+            _rb.AddForce(characterControllerScript._lookDirection * _knockbackPowerHeavy, ForceMode.Impulse);
+        } else
+        {
+            Debug.LogError("[EnemyController] Wrong take damage type input");
+        }
+
+            currentHealth -= amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
         Debug.Log($"[TakeDamage] Damage: {amount}, Health: {currentHealth}");
