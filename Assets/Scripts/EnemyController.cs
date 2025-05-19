@@ -130,7 +130,7 @@ public class EnemyController : MonoBehaviour
 
     }
     
-    public void TakeDamage(float amount)
+    public void TakeDamage(float amount, string type)
     {
         //sound
         AudioControllerScript.Instance.PlaySound(_doDamage);
