@@ -16,6 +16,11 @@ public class Combat : MonoBehaviour
     public float lightAttackCooldown = 0.5f;
     public float heavyAttackCooldown = 1f;
 
+    [SerializeField]
+    private float _lightAttackMovementCooldown = 0.1f;
+    [SerializeField]
+    private float _heavyAttackMovementCooldown = 0.3f;
+
     private bool isBlocking = false;
     private bool isAttacking = false;
 
@@ -50,7 +55,7 @@ public class Combat : MonoBehaviour
         {
             lastAttackTime = Time.time;
             StartCoroutine(PerformAttack("Light"));
-
+            GetComponent<CharacterControll>().movementCooldown = (int)(_lightAttackMovementCooldown * 100);
         }
 
         // Heavy attack
@@ -58,6 +63,7 @@ public class Combat : MonoBehaviour
         {
             lastAttackTime = Time.time;
             StartCoroutine(PerformAttack("Heavy"));
+            GetComponent<CharacterControll>().movementCooldown = (int)(_heavyAttackMovementCooldown * 100);
         }
     }
 

@@ -1238,6 +1238,14 @@ PrefabInstance:
       propertyPath: lightAttackDamage
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 3924248252850073040, guid: 29436cdabc8684c4b97f766ae0e99130, type: 3}
+      propertyPath: _heavyAttackMovementCooldown
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3924248252850073040, guid: 29436cdabc8684c4b97f766ae0e99130, type: 3}
+      propertyPath: _lightAttackMovementCooldown
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 4830633066345398496, guid: 29436cdabc8684c4b97f766ae0e99130, type: 3}
       propertyPath: _speed
       value: 5
