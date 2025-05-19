@@ -29,8 +29,8 @@ public class EnemyController : MonoBehaviour
 
     public float damage = 10f;
     public float damageCooldown = 10f;
-    private float damageCooldownTimer;
-
+    private float damageCooldownTimer =0f;
+    [SerializeField] private Image _swordVisueleCooldown;
     private bool playerNearby = false;
 
     private CharacterControll characterControllerScript;
@@ -88,9 +88,11 @@ public class EnemyController : MonoBehaviour
             if (distance > attackRange)
             {
                 transform.position = Vector3.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
+                _swordVisueleCooldown.color = Color.green;
             }
             else
             {
+                _swordVisueleCooldown.color = Color.yellow;
                 Attack();
             }
         }
@@ -110,30 +112,30 @@ public class EnemyController : MonoBehaviour
 
     void Attack()
     {
+        Debug.Log(damageCooldownTimer);
         if (damageCooldownTimer >= damageCooldown)
         {
+            _swordVisueleCooldown.color = Color.red;
             if (combatScript != null && combatScript.IsBlocking())
             {
 
                 Debug.Log("Player Blocked");
             }
-            else 
+            else
             {
                 characterControllerScript.TakeDamage(damage);
                 Debug.Log("Player took damage");
-            
+
             }
-                
             damageCooldownTimer = 0f;
-            
         }
         else
         {
-            damageCooldownTimer += Time.deltaTime;
+            damageCooldownTimer += Time.time;
         }
         StartCoroutine(Recharge());
     }
-    
+
     public void TakeDamage(float amount, string type)
     {
         //sound
@@ -150,15 +152,17 @@ public class EnemyController : MonoBehaviour
         if (type == "Light")
         {
             _rb.AddForce(characterControllerScript._lookDirection * _knockbackPowerLight, ForceMode.Impulse);
-        } else if (type == "Heavy")
+        }
+        else if (type == "Heavy")
         {
             _rb.AddForce(characterControllerScript._lookDirection * _knockbackPowerHeavy, ForceMode.Impulse);
-        } else
+        }
+        else
         {
             Debug.LogError("[EnemyController] Wrong take damage type input");
         }
 
-            currentHealth -= amount;
+        currentHealth -= amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
         Debug.Log($"[TakeDamage] Damage: {amount}, Health: {currentHealth}");
