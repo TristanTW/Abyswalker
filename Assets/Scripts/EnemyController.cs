@@ -8,6 +8,7 @@ public class EnemyController : MonoBehaviour
 
     private Combat combatScript;
 
+    public GameObject _body;
 
     public GameObject pointOrb;
     private GameObject player;
@@ -29,6 +30,10 @@ public class EnemyController : MonoBehaviour
     private bool playerNearby = false;
 
     private CharacterControll characterControllerScript;
+
+    public Material defaultMat;
+    public Material hitMat;
+    public float resetMaterialDelay = 0.2f;
 
     private void Awake()
     {
@@ -127,6 +132,11 @@ public class EnemyController : MonoBehaviour
 
         //end sound
 
+        // Change material to indicate damage
+        _body.GetComponent<Renderer>().material = hitMat;
+
+        // Start coroutine to revert back
+        StartCoroutine(ResetMaterialAfterDelay());
 
         currentHealth -= amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
@@ -144,6 +154,12 @@ public class EnemyController : MonoBehaviour
             Debug.Log("[TakeDamage] Health is zero or less. Calling Die().");
             Die();
         }
+    }
+
+    private System.Collections.IEnumerator ResetMaterialAfterDelay()
+    {
+        yield return new WaitForSeconds(resetMaterialDelay);
+        _body.GetComponent<Renderer>().material = defaultMat;
     }
 
     void Die()
