@@ -125,13 +125,13 @@ public class EnemyController : MonoBehaviour
             }
                 
             damageCooldownTimer = 0f;
-            StartCoroutine(Recharge());
+            
         }
         else
         {
             damageCooldownTimer += Time.deltaTime;
         }
-
+        StartCoroutine(Recharge());
     }
     
     public void TakeDamage(float amount, string type)
