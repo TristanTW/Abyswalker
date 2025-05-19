@@ -49,8 +49,14 @@ public class CharacterControll : MonoBehaviour
 
     public int movementCooldown = 0;
 
+<<<<<<< Updated upstream
     public bool canDodge = true;
 
+=======
+    public Material defaultMat;
+    public Material hitMat;
+    public float resetMaterialDelay = 0.2f; // Duration before reverting to default
+>>>>>>> Stashed changes
 
     void Start()
     {
@@ -66,8 +72,6 @@ public class CharacterControll : MonoBehaviour
         {
             Healing();
         }
-
-
     }
     void FixedUpdate()
     {
@@ -196,17 +200,28 @@ public class CharacterControll : MonoBehaviour
     public void TakeDamage(float damage)
     {
         _hitPoints -= damage;
-        //sound
-        AudioControllerScript.Instance.PlaySound(_recieveDamage);
-        //end sound
 
-        //show jelly damage screen
+        // Sound
+        AudioControllerScript.Instance.PlaySound(_recieveDamage);
+
+        // Change material to indicate damage
+        _body.GetComponent<Renderer>().material = hitMat;
+
+        // Start coroutine to revert back
+        StartCoroutine(ResetMaterialAfterDelay());
+
+        // Show jelly damage screen
         if (_damageScreen != null)
         {
-
             var color = _damageScreen.GetComponent<Image>().color;
             color.a = 1f;
             _damageScreen.GetComponent<Image>().color = color;
         }
+    }
+
+    private System.Collections.IEnumerator ResetMaterialAfterDelay()
+    {
+        yield return new WaitForSeconds(resetMaterialDelay);
+        _body.GetComponent<Renderer>().material = defaultMat;
     }
 }
