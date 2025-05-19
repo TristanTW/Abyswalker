@@ -6,6 +6,9 @@ public class EnemyController : MonoBehaviour
 
     [SerializeField] private AudioClip _doDamage;
 
+    private Combat combatScript;
+
+
     public GameObject pointOrb;
     private GameObject player;
     private float moveSpeed = 3f;
@@ -30,6 +33,12 @@ public class EnemyController : MonoBehaviour
     private void Awake()
     {
         player = GameObject.FindWithTag("Player");
+
+        combatScript = player.GetComponent<Combat>();
+        if (combatScript == null)
+        {
+            Debug.LogError("Combat script not found on the Player object.");
+        }
     }
 
     void Start()
@@ -91,7 +100,18 @@ public class EnemyController : MonoBehaviour
     {
         if (damageCooldownTimer >= damageCooldown)
         {
-            characterControllerScript.TakeDamage(damage);
+            if (combatScript != null && combatScript.IsBlocking())
+            {
+
+                Debug.Log("Player Blocked");
+            }
+            else 
+            {
+                characterControllerScript.TakeDamage(damage);
+                Debug.Log("Player took damage");
+            
+            }
+                
             damageCooldownTimer = 0f;
         }
         else
