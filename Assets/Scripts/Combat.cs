@@ -17,9 +17,9 @@ public class Combat : MonoBehaviour
     public float heavyAttackCooldown = 1f;
 
     [SerializeField]
-    private float _lightAttackMovementCooldown = 0.5f;
+    private float _lightAttackMovementCooldown = 0.1f;
     [SerializeField]
-    private float _heavyAttackMovementCooldown = 1f;
+    private float _heavyAttackMovementCooldown = 0.3f;
 
     private bool isBlocking = false;
     private bool isAttacking = false;
