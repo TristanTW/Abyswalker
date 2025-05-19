@@ -6,7 +6,7 @@ public class UIbuttonScript : MonoBehaviour
 {
     [SerializeField] private Button _quit;
     [SerializeField] private Button _respawn;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
         _quit.onClick.AddListener(Quitgame);
@@ -15,16 +15,17 @@ public class UIbuttonScript : MonoBehaviour
 
     void Quitgame()
     {
+#if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
-        //Application.Quit();
+#else
+        Application.Quit();
+#endif
         Debug.Log("Quit");
     }
 
     void Respawn()
     {
-        
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Debug.Log("Respawn");
-
     }
 }
