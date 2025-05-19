@@ -123,12 +123,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _doDamage: {fileID: 8300000, guid: fc9992cbc6f730d44b2f55777c655d56, type: 3}
+  _body: {fileID: 1683243900721631112}
   pointOrb: {fileID: 3457042226878069100, guid: b7e43bd15c4b96944b7deadaf75b9e47, type: 3}
-  maxHealth: 300
   healthBarCanvas: {fileID: 2771710811391592369}
   healthFillImage: {fileID: 5970014061801757927}
+  maxHealth: 300
   damage: 20
   damageCooldown: 3
+  defaultMat: {fileID: 2100000, guid: a96e062dfaf47024ab9d317e5a7794cb, type: 2}
+  hitMat: {fileID: 2100000, guid: 27e0296a54f0c0c4ca8039b21f804270, type: 2}
+  resetMaterialDelay: 0.2
 --- !u!136 &3826995899413420235
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -336,7 +340,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2771710811391592369
 RectTransform:
   m_ObjectHideFlags: 0
