@@ -95,7 +95,8 @@ public class Combat : MonoBehaviour
             if (enemyController != null)
             {
                 float damage = (type == "Light") ? lightAttackDamage : heavyAttackDamage;
-                enemyController.TakeDamage(damage);
+                string damageType = (type == "Light") ? "Light" : "Heavy";
+                enemyController.TakeDamage(damage, damageType);
             }
             else
             {
