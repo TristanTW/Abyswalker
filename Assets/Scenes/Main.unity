@@ -273,7 +273,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 0, y: 8.84, z: -38.5}
+  m_LocalPosition: {x: 0, y: 8.83, z: -38.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2016,10 +2016,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 919375979576068827, guid: 29436cdabc8684c4b97f766ae0e99130, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 2262002538106029692, guid: 29436cdabc8684c4b97f766ae0e99130, type: 3}
       propertyPath: m_Volume
       value: 0.1
@@ -2031,10 +2027,6 @@ PrefabInstance:
     - target: {fileID: 3924248252850073040, guid: 29436cdabc8684c4b97f766ae0e99130, type: 3}
       propertyPath: lightAttackDamage
       value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 4830633066345398496, guid: 29436cdabc8684c4b97f766ae0e99130, type: 3}
-      propertyPath: _speed
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4830633066345398496, guid: 29436cdabc8684c4b97f766ae0e99130, type: 3}
       propertyPath: _camera
@@ -2052,10 +2044,6 @@ PrefabInstance:
       propertyPath: _healCounterText
       value: 
       objectReference: {fileID: 1427313561}
-    - target: {fileID: 5379731658222555472, guid: 29436cdabc8684c4b97f766ae0e99130, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 6365965303491879031, guid: 29436cdabc8684c4b97f766ae0e99130, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.35
@@ -2096,21 +2084,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6731587271480886814, guid: 29436cdabc8684c4b97f766ae0e99130, type: 3}
-      propertyPath: roomCollider
-      value: 
-      objectReference: {fileID: 2021222054}
-    - target: {fileID: 8184488483031759590, guid: 29436cdabc8684c4b97f766ae0e99130, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8252542705246200308, guid: 29436cdabc8684c4b97f766ae0e99130, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8252542705246200308, guid: 29436cdabc8684c4b97f766ae0e99130, type: 3}
-      propertyPath: m_TagString
-      value: PlayerTrigger
+    - target: {fileID: 8866980436968214852, guid: 29436cdabc8684c4b97f766ae0e99130, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

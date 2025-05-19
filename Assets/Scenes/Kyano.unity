@@ -131,10 +131,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 3924248252850073040, guid: 29436cdabc8684c4b97f766ae0e99130, type: 3}
-      propertyPath: enemyLayers.m_Bits
-      value: 64
-      objectReference: {fileID: 0}
     - target: {fileID: 4830633066345398496, guid: 29436cdabc8684c4b97f766ae0e99130, type: 3}
       propertyPath: _camera
       value: 
@@ -179,16 +175,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6731587271480886814, guid: 29436cdabc8684c4b97f766ae0e99130, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6731587271480886814, guid: 29436cdabc8684c4b97f766ae0e99130, type: 3}
-      propertyPath: roomCollider
-      value: 
-      objectReference: {fileID: 717256206}
-    m_RemovedComponents:
-    - {fileID: 6731587271480886814, guid: 29436cdabc8684c4b97f766ae0e99130, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -466,7 +453,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3719187881980567406, guid: da1695abad7e95e47840b789169419d8, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
-      value: 1
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 3883973143399326565, guid: da1695abad7e95e47840b789169419d8, type: 3}
       propertyPath: m_Pivot.x
@@ -831,7 +818,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   _gateSpeed: 0.005
-  _gateOpenTest: 1
 --- !u!4 &1105281579
 Transform:
   m_ObjectHideFlags: 0
