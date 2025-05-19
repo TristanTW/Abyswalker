@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &16647209 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7080870099621177595, guid: da1695abad7e95e47840b789169419d8, type: 3}
+  m_PrefabInstance: {fileID: 1111841172}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &40473138
 GameObject:
   m_ObjectHideFlags: 0
@@ -984,18 +989,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1875444700608378373, guid: da1695abad7e95e47840b789169419d8, type: 3}
-      propertyPath: m_TagString
-      value: HealthBar
-      objectReference: {fileID: 0}
     - target: {fileID: 1952549308537268542, guid: da1695abad7e95e47840b789169419d8, type: 3}
       propertyPath: DeathScreen
       value: 
       objectReference: {fileID: 975502649}
-    - target: {fileID: 3549949976620235127, guid: da1695abad7e95e47840b789169419d8, type: 3}
-      propertyPath: m_TagString
-      value: PointCounter
-      objectReference: {fileID: 0}
     - target: {fileID: 3883973143399326565, guid: da1695abad7e95e47840b789169419d8, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1258,6 +1255,10 @@ PrefabInstance:
       propertyPath: _damageScreen
       value: 
       objectReference: {fileID: 2144706093}
+    - target: {fileID: 4830633066345398496, guid: 29436cdabc8684c4b97f766ae0e99130, type: 3}
+      propertyPath: _canDodgeSymbol
+      value: 
+      objectReference: {fileID: 16647209}
     - target: {fileID: 4830633066345398496, guid: 29436cdabc8684c4b97f766ae0e99130, type: 3}
       propertyPath: _healCounterText
       value: 

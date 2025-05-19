@@ -99,9 +99,9 @@ public class Combat : MonoBehaviour
         yield return new WaitForSeconds(duration);
         isAttacking = false;
     }
-    void OnDrawGizmosSelected()
+    void OnDrawGizmos()
     {
-        if (!Application.isPlaying) return;
+        
 
         // Get the real look direction from the movement script
         CharacterControll movement = GetComponent<CharacterControll>();

@@ -8,6 +8,7 @@ public class CharacterControll : MonoBehaviour
 
     [SerializeField] private AudioClip _recieveDamage;
     [SerializeField] private GameObject _damageScreen;
+    [SerializeField] private GameObject _canDodgeSymbol;      
 
     [SerializeField]
     private float _speed;
@@ -47,6 +48,8 @@ public class CharacterControll : MonoBehaviour
     private Vector3 _mouseLocation = new Vector3(0, 0, 1);
 
     public int movementCooldown = 0;
+
+    public bool canDodge = true;
 
 
     void Start()
@@ -163,6 +166,7 @@ public class CharacterControll : MonoBehaviour
             _isDodging = true;
             _dodgeTimer.Restart();
             if (_rollThroughEnemy) GetComponent<CapsuleCollider>().excludeLayers = LayerMask.GetMask("Enemy");
+            canDodge = false;
         }
         if ((float)_dodgeTimer.ElapsedMilliseconds / 1000 >= _dodgeCooldown)
         {
@@ -170,6 +174,16 @@ public class CharacterControll : MonoBehaviour
             _dodgeTimer.Stop();
             _rb.angularVelocity = Vector3.zero;
             if (_rollThroughEnemy) GetComponent<CapsuleCollider>().excludeLayers = LayerMask.GetMask("");
+            canDodge = true;
+        }
+
+        if (!canDodge)
+        {
+            _canDodgeSymbol.GetComponent<Image>().color = Color.gray;
+        }
+        else
+        {
+            _canDodgeSymbol.GetComponent<Image>().color = Color.white;
         }
     }
 

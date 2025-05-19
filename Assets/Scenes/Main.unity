@@ -1371,6 +1371,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3883973143399326565, guid: da1695abad7e95e47840b789169419d8, type: 3}
   m_PrefabInstance: {fileID: 1053283326}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1053283328 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7080870099621177595, guid: da1695abad7e95e47840b789169419d8, type: 3}
+  m_PrefabInstance: {fileID: 1053283326}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1268272539
 GameObject:
   m_ObjectHideFlags: 0
@@ -2039,6 +2044,10 @@ PrefabInstance:
       propertyPath: _damageScreen
       value: 
       objectReference: {fileID: 64715728}
+    - target: {fileID: 4830633066345398496, guid: 29436cdabc8684c4b97f766ae0e99130, type: 3}
+      propertyPath: _canDodgeSymbol
+      value: 
+      objectReference: {fileID: 1053283328}
     - target: {fileID: 4830633066345398496, guid: 29436cdabc8684c4b97f766ae0e99130, type: 3}
       propertyPath: _healCounterText
       value: 
