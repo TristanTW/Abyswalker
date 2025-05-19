@@ -21,11 +21,16 @@ public class Combat : MonoBehaviour
     [SerializeField]
     private float _heavyAttackMovementCooldown = 0.3f;
 
+    [SerializeField] private GameObject _shieldSprite;
     private bool isBlocking = false;
     private bool isAttacking = false;
 
     private float lastAttackTime = 0f;
 
+    private void Start()
+    {
+        _shieldSprite.SetActive(false);
+    }
     void Update()
     {
         HandleInput();
@@ -37,12 +42,14 @@ public class Combat : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
         {
             isBlocking = true;
+            _shieldSprite.SetActive(true);
             Debug.Log("Blocking started");
         }
 
         if (Input.GetKeyUp(KeyCode.F))
         {
             isBlocking = false;
+            _shieldSprite.SetActive(false);
             Debug.Log("Blocking stopped");
         }
 
