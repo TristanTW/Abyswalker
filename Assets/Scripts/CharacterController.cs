@@ -46,6 +46,8 @@ public class CharacterControll : MonoBehaviour
 
     private Vector3 _mouseLocation = new Vector3(0, 0, 1);
 
+    public int movementCooldown = 0;
+
 
     void Start()
     {
@@ -66,7 +68,7 @@ public class CharacterControll : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (!_isDodging)
+        if (!_isDodging && movementCooldown <= 0)
         {
             Movement();
         }
@@ -82,6 +84,11 @@ public class CharacterControll : MonoBehaviour
                 color.a -= 0.05f;
                 _damageScreen.GetComponent<Image>().color = color;
             }
+        }
+
+        if (movementCooldown > 0)
+        {
+            movementCooldown--;
         }
     }
     private void UpdateHealCounterUI()
