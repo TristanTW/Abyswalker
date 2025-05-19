@@ -22,8 +22,8 @@ public class Combat : MonoBehaviour
     private float _heavyAttackMovementCooldown = 0.3f;
 
     [SerializeField] private GameObject _shieldSprite;
-    private bool isBlocking = false;
-    private bool isAttacking = false;
+    public bool isBlocking = false;
+    public bool isAttacking = false;
 
     private float lastAttackTime = 0f;
 

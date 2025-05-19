@@ -735,30 +735,6 @@ PrefabInstance:
       propertyPath: DeathScreen
       value: 
       objectReference: {fileID: 907847554}
-    - target: {fileID: 2633379609224683357, guid: da1695abad7e95e47840b789169419d8, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 9a3a557eddaa89348936ef2528f8bfaa, type: 3}
-    - target: {fileID: 2910505254827230847, guid: da1695abad7e95e47840b789169419d8, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2910505254827230847, guid: da1695abad7e95e47840b789169419d8, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2910505254827230847, guid: da1695abad7e95e47840b789169419d8, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2910505254827230847, guid: da1695abad7e95e47840b789169419d8, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -808
-      objectReference: {fileID: 0}
-    - target: {fileID: 2910505254827230847, guid: da1695abad7e95e47840b789169419d8, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -413
-      objectReference: {fileID: 0}
     - target: {fileID: 3883973143399326565, guid: da1695abad7e95e47840b789169419d8, type: 3}
       propertyPath: m_Pivot.x
       value: 0
