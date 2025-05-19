@@ -8,7 +8,7 @@ public class CharacterControll : MonoBehaviour
 
     [SerializeField] private AudioClip _recieveDamage;
     [SerializeField] private GameObject _damageScreen;
-    [SerializeField] private GameObject _canDodgeSymbol;      
+      
 
     [SerializeField]
     private float _speed;
@@ -176,15 +176,6 @@ public class CharacterControll : MonoBehaviour
             _rb.angularVelocity = Vector3.zero;
             if (_rollThroughEnemy) GetComponent<CapsuleCollider>().excludeLayers = LayerMask.GetMask("");
             canDodge = true;
-        }
-
-        if (!canDodge)
-        {
-            _canDodgeSymbol.GetComponent<Image>().color = Color.gray;
-        }
-        else
-        {
-            _canDodgeSymbol.GetComponent<Image>().color = Color.white;
         }
     }
 
