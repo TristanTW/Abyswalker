@@ -9,19 +9,22 @@ public class EnemyController : MonoBehaviour
     private Combat combatScript;
 
     public GameObject _body;
-
     public GameObject pointOrb;
-    private GameObject player;
-    private float moveSpeed = 3f;
-    private float attackRange = 2f;
 
-    public float maxHealth = 100f;
-    private float currentHealth;
+    private bool isRecharging = false;
+    private float rechargeDuration = 2f;
 
     public Transform healthBarCanvas;
     public Image healthFillImage;
     private Camera mainCamera;
     private float targetFill = 1f;
+
+    public float maxHealth = 100f;
+    private float currentHealth;
+
+    private GameObject player;
+    private float moveSpeed = 3f;
+    private float attackRange = 2f;
 
     public float damage = 10f;
     public float damageCooldown = 10f;
@@ -74,7 +77,7 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
-        if (player != null)
+        if (player != null && !isRecharging)
         {
             float distance = Vector3.Distance(transform.position, player.transform.position);
 
@@ -118,11 +121,13 @@ public class EnemyController : MonoBehaviour
             }
                 
             damageCooldownTimer = 0f;
+            StartCoroutine(Recharge());
         }
         else
         {
             damageCooldownTimer += Time.deltaTime;
         }
+
     }
     
     public void TakeDamage(float amount)
@@ -176,7 +181,13 @@ public class EnemyController : MonoBehaviour
 
         GameObject deathDrop = Instantiate(pointOrb, deathDropSpawnLocation, Quaternion.identity);
     }
+    private System.Collections.IEnumerator Recharge()
+    {
+        isRecharging = true;
+        yield return new WaitForSeconds(rechargeDuration);
+        isRecharging = false;
 
+    }
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
