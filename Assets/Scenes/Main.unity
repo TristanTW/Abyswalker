@@ -699,6 +699,14 @@ PrefabInstance:
       propertyPath: DeathScreen
       value: 
       objectReference: {fileID: 1172958781}
+    - target: {fileID: 2973948870570931467, guid: da1695abad7e95e47840b789169419d8, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 628
+      objectReference: {fileID: 0}
+    - target: {fileID: 2973948870570931467, guid: da1695abad7e95e47840b789169419d8, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 284
+      objectReference: {fileID: 0}
     - target: {fileID: 3549949976620235127, guid: da1695abad7e95e47840b789169419d8, type: 3}
       propertyPath: m_TagString
       value: PointCounter
@@ -783,6 +791,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3913655078774542505, guid: da1695abad7e95e47840b789169419d8, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 577
+      objectReference: {fileID: 0}
+    - target: {fileID: 3913655078774542505, guid: da1695abad7e95e47840b789169419d8, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 294
+      objectReference: {fileID: 0}
     - target: {fileID: 5571776907485052862, guid: da1695abad7e95e47840b789169419d8, type: 3}
       propertyPath: m_Name
       value: Game UI
@@ -804,7 +820,10 @@ PrefabInstance:
       value: 308
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2301908378243003758, guid: da1695abad7e95e47840b789169419d8, type: 3}
+    - {fileID: 1013075283261005185, guid: da1695abad7e95e47840b789169419d8, type: 3}
+    - {fileID: 5569101147205592675, guid: da1695abad7e95e47840b789169419d8, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 3883973143399326565, guid: da1695abad7e95e47840b789169419d8, type: 3}
       insertIndex: -1
@@ -1431,7 +1450,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 15, y: 5, z: 15}
+  m_Size: {x: 15.13, y: 5.8, z: 18.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1305424256
 Transform:
@@ -1545,7 +1564,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 15, y: 5, z: 15}
+  m_Size: {x: 15, y: 5, z: 18.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1449768247
 Transform:
@@ -1879,7 +1898,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 15, y: 5, z: 15}
+  m_Size: {x: 15, y: 5, z: 18.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1727032817
 Transform:
@@ -2142,7 +2161,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 15, y: 5, z: 15}
+  m_Size: {x: 15, y: 5, z: 16.96}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2043321931
 GameObject:
