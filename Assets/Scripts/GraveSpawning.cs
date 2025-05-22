@@ -1,54 +1,68 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class GraveSpawning : MonoBehaviour
 {
     public GameObject graveSpawn;
-    public Collider roomCollider;
-    public float radius;
-    public int maxGraveAmount;
+    public GameObject bossGraveSpawn;
+    public List<Collider> roomColliders;
+    public Collider bossRoomCollider;
+    public float radius = 5f;
+    public int maxGraveAmount = 3;
 
-    public EnemySpawning enemySpawner; // Reference to the EnemySpawning script
-
-    GameObject player;
-    int graveAmount;
+    private GameObject player;
 
     private void Awake()
     {
         player = GameObject.FindWithTag("Player");
     }
 
-    public void StartSpawning()
+    public void SpawnGravesAround()
     {
-        // Spawn graves only if the graveAmount is less than the max
+        Collider currentRoom = GetPlayerCurrentRoom();
+        if (currentRoom == null)
+        {
+            Debug.LogWarning("Player is not inside any room.");
+            return;
+        }
+
+        int graveAmount = 0;
         while (graveAmount < maxGraveAmount)
         {
-            var spawnPosition = GetValidSpawnPointOnCircle(radius, roomCollider);
+            Vector3? spawnPosition = GetValidSpawnPointOnCircle(radius, currentRoom);
             if (spawnPosition != null)
             {
+                Instantiate(graveSpawn, spawnPosition.Value, Quaternion.identity);
                 graveAmount++;
-                GameObject graveObject = Instantiate(graveSpawn, spawnPosition.Value, Quaternion.identity);
-
-                // Spawn an enemy at the grave's position using the EnemySpawning script
-                if (enemySpawner != null)
-                {
-                    enemySpawner.parent = graveObject;  // Set the grave as the parent for the enemy
-                    enemySpawner.Spawn();  // Spawn the enemy at this position
-                }
-                else
-                {
-                    Debug.LogWarning("EnemySpawning component is not assigned!");
-                }
-            }
-            else
-            {
-                break; // Exit if no valid position found
             }
         }
+    }
+
+    public void SpawnBossGraveAround()
+    {
+        Vector3 spawnPosition = bossRoomCollider.bounds.center;
+        spawnPosition.y = 0;
+
+        Instantiate(bossGraveSpawn, spawnPosition, Quaternion.identity);
+    }
+
+    private Collider GetPlayerCurrentRoom()
+    {
+        foreach (Collider room in roomColliders)
+        {
+            if (room != null && room.bounds.Contains(player.transform.position))
+            {
+                return room;
+            }
+        }
+
+        return null;
     }
 
     private Vector3? GetValidSpawnPointOnCircle(float radius, Collider areaCollider)
     {
         int maxAttempts = 10;
+
         for (int i = 0; i < maxAttempts; i++)
         {
             Vector2 offset2D = Random.insideUnitCircle.normalized * radius;
@@ -64,7 +78,7 @@ public class GraveSpawning : MonoBehaviour
             }
         }
 
-        return null; // Return null if no valid position found
+        return null;
     }
 
     private bool IsPointInsideCollider(Collider col, Vector3 point)

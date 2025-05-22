@@ -7,19 +7,18 @@ public class EnemySpawning : MonoBehaviour
 
     GameObject player;
 
-    public void Spawn()
+    Vector3 spawnPosition;
+
+    private void Awake()
     {
-        if (enemy == null || parent == null)
-        {
-            Debug.LogWarning("Enemy or Parent not assigned.");
-            return;
-        }
-
         player = GameObject.FindWithTag("Player");
+    }
 
-        Vector3 spawnPosition = parent.transform.position;
+    private void Start()
+    {
+        spawnPosition = parent.transform.position;
         spawnPosition.y = player.transform.position.y;
 
-        Instantiate(enemy, spawnPosition, Quaternion.identity);
+        GameObject enemyObject = Instantiate(enemy, spawnPosition, Quaternion.identity);
     }
 }

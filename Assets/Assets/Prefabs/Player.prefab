@@ -116,7 +116,7 @@ GameObject:
   - component: {fileID: 3924248252850073040}
   - component: {fileID: 7847169415511171349}
   m_Layer: 7
-  m_Name: Player (1)
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -182,7 +182,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _recieveDamage: {fileID: 8300000, guid: afea7774583207c4b8e1cb68aa59af71, type: 3}
   _damageScreen: {fileID: 0}
-  _canDodgeSymbol: {fileID: 0}
   _speed: 5
   _rotationSpeed: 10
   _camera: {fileID: 0}
@@ -222,6 +221,8 @@ MonoBehaviour:
   _lightAttackMovementCooldown: 0.1
   _heavyAttackMovementCooldown: 0.3
   _shieldSprite: {fileID: 5880639756611712996}
+  isBlocking: 0
+  isAttacking: 0
 --- !u!136 &7847169415511171349
 CapsuleCollider:
   m_ObjectHideFlags: 0

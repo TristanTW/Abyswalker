@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 2234399663426678363}
   - component: {fileID: 4124070184716661195}
   m_Layer: 0
-  m_Name: BossSpawn
+  m_Name: BossGraveSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

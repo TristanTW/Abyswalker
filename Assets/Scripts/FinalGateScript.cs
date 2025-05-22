@@ -16,7 +16,6 @@ public class FinalGateScript : MonoBehaviour
     {
         if (GameObject.FindGameObjectsWithTag("Enemy").Count() == 0)
         {
-            Debug.Log("Putting door active");
             _isActive = true;
         }
         else

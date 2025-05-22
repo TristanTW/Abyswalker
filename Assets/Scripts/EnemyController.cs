@@ -31,7 +31,6 @@ public class EnemyController : MonoBehaviour
     public float damageCooldown = 10f;
     private float damageCooldownTimer =0f;
     [SerializeField] private Image _swordVisueleCooldown;
-    private bool playerNearby = false;
 
     private CharacterControll characterControllerScript;
 
@@ -206,26 +205,5 @@ public class EnemyController : MonoBehaviour
         yield return new WaitForSeconds(rechargeDuration);
         isRecharging = false;
 
-    }
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerNearby = true;
-            if (healthBarCanvas != null)
-                healthBarCanvas.gameObject.SetActive(true);
-
-        }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerNearby = false;
-            if (healthBarCanvas != null)
-                healthBarCanvas.gameObject.SetActive(true);
-
-        }
     }
 }
