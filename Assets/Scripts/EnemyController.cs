@@ -38,8 +38,8 @@ public class EnemyController : MonoBehaviour
     public Material hitMat;
     public float resetMaterialDelay = 0.2f;
 
-    private float _knockbackPowerLight = 5;
-    private float _knockbackPowerHeavy = 8;
+    private float _knockbackPowerLight = 2;
+    private float _knockbackPowerHeavy = 4;
 
     private void Awake()
     {
