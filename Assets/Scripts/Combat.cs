@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class Combat : MonoBehaviour
 {
-
+    //attacking
     public float attackRange = 1.5f;
     [SerializeField]
     public float lightAttackDamage = 5f;
@@ -12,7 +12,6 @@ public class Combat : MonoBehaviour
     public Transform attackPoint; // Assign this in the inspector
     public LayerMask enemyLayers; // Assign this to “Hydra” layer or tag
 
-    [Header("Combat Settings")]
     public float lightAttackCooldown = 0.5f;
     public float heavyAttackCooldown = 1f;
 
@@ -20,16 +19,39 @@ public class Combat : MonoBehaviour
     private float _lightAttackMovementCooldown = 0.1f;
     [SerializeField]
     private float _heavyAttackMovementCooldown = 0.3f;
+    private float lastAttackTime = 0f;
 
+    //shield UI
     [SerializeField] private GameObject _shieldSprite;
     public bool isBlocking = false;
     public bool isAttacking = false;
 
-    private float lastAttackTime = 0f;
+
+    //block settings
+    public int maxBlockHits = 4;
+    private int currentBlockHits;
+    [SerializeField]
+    public float blockRechargeTime = 10f;
+    private bool blockRecharging = false;
+
+    private AudioSource audioSource;
+    //block sound
+    [SerializeField] private AudioClip blockHitSound;
+    
+    //breaksoud
+    [SerializeField] private AudioClip blockBreakSound;
+
 
     private void Start()
     {
         _shieldSprite.SetActive(false);
+        currentBlockHits = maxBlockHits;
+
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
     }
     void Update()
     {
@@ -41,9 +63,16 @@ public class Combat : MonoBehaviour
         // Block toggle (can change to "hold" style if preferred)
         if (Input.GetKeyDown(KeyCode.F))
         {
-            isBlocking = true;
-            _shieldSprite.SetActive(true);
-            Debug.Log("Blocking started");
+            if (!blockRecharging)
+            {
+                isBlocking = true;
+                _shieldSprite.SetActive(true);
+                Debug.Log("Blocking started");
+            }
+            else
+            {
+                Debug.Log("Block is recharging!");
+            }
         }
 
         if (Input.GetKeyUp(KeyCode.F))
@@ -127,5 +156,44 @@ public class Combat : MonoBehaviour
     public bool IsBlocking()
     {
         return isBlocking;
+    }
+    public bool CanBlock()
+    {
+        return !blockRecharging && currentBlockHits > 0;
+    }
+    public void RegisterBlockedHit()
+    {
+        if (!isBlocking) return;
+
+        currentBlockHits--;
+        if (blockHitSound != null)
+        {
+            audioSource.PlayOneShot(blockHitSound);
+        }
+
+        Debug.Log("Blocked hit. Remaining: " + currentBlockHits);
+
+        if (currentBlockHits <= 0)
+        {
+            if (blockBreakSound != null)
+            {
+                audioSource.PlayOneShot(blockBreakSound);
+            }
+            StartCoroutine(BlockRecharge());
+        }
+    }
+    private System.Collections.IEnumerator BlockRecharge()
+    {
+        isBlocking = false;
+        _shieldSprite.SetActive(false);
+        blockRecharging = true;
+        Debug.Log("Block depleted. Recharging...");
+
+        yield return new WaitForSeconds(blockRechargeTime);
+
+        blockRecharging = false;
+        currentBlockHits = maxBlockHits;
+
+        Debug.Log("Block recharged.");
     }
 }

@@ -117,8 +117,8 @@ public class EnemyController : MonoBehaviour
             _swordVisueleCooldown.color = Color.red;
             if (combatScript != null && combatScript.IsBlocking())
             {
-
                 Debug.Log("Player Blocked");
+                combatScript.RegisterBlockedHit();
             }
             else
             {
