@@ -55,8 +55,12 @@ public class CharacterControll : MonoBehaviour
     public Material hitMat;
     public float resetMaterialDelay = 0.2f;
 
+    private Combat _combat;
+
     void Start()
     {
+        _combat = GetComponent<Combat>();
+
         Time.timeScale = 1.0f;
         _rb = GetComponent<Rigidbody>();
         _skellybody = GetComponent<Rigidbody>();
@@ -130,7 +134,15 @@ public class CharacterControll : MonoBehaviour
         if (Input.GetKey(KeyCode.D)) right = 1;
 
         Vector3 directionVector = new Vector3(left + right, 0, forward + backward);
-        Vector3 movementVector = directionVector.normalized * _speed * Time.fixedDeltaTime;
+
+        float effectivespeed = _speed;
+        
+        if ( _combat !=null && _combat.IsBlocking())
+        {
+            effectivespeed *= 0.2f; //20% the normal speed
+            
+        }
+        Vector3 movementVector = directionVector.normalized * effectivespeed * Time.fixedDeltaTime;
 
         _rb.MovePosition(_rb.position + movementVector);
     }
