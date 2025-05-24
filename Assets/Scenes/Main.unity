@@ -141,6 +141,14 @@ PrefabInstance:
       value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 3924248252850073040, guid: 29436cdabc8684c4b97f766ae0e99130, type: 3}
+      propertyPath: blockHitSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 6fc44a1f4c8d07d4bafb8ba43d695369, type: 3}
+    - target: {fileID: 3924248252850073040, guid: 29436cdabc8684c4b97f766ae0e99130, type: 3}
+      propertyPath: blockBreakSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 19a03ddadb58ff342b4fe36249ed8aa9, type: 3}
+    - target: {fileID: 3924248252850073040, guid: 29436cdabc8684c4b97f766ae0e99130, type: 3}
       propertyPath: heavyAttackDamage
       value: 25
       objectReference: {fileID: 0}
@@ -1104,8 +1112,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Moving: WASD/ ZSQD \nLight Attack: LMB\nHeavy Attack: RMB\nBlocking :
-    F\n"
+  m_text: "Moving: WASD/ ZSQD \nLight Attack: LMB\nHeavy Attack: RMB\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

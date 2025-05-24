@@ -116,12 +116,9 @@ public class CharacterControll : MonoBehaviour
             _healsRemaining--;
             UpdateHealCounterUI();
         }
-        else
-        {
-            
-        }
+        
     }
-    private void Movement()
+    private Vector3 GetMovementInput()
     {
         int forward = 0;
         int backward = 0;
@@ -133,19 +130,24 @@ public class CharacterControll : MonoBehaviour
         if (Input.GetKey(KeyCode.A)) left = -1;
         if (Input.GetKey(KeyCode.D)) right = 1;
 
-        Vector3 directionVector = new Vector3(left + right, 0, forward + backward);
+        return new Vector3(left + right, 0, forward + backward);
+    }
+    private void Movement()
+    {
+        Vector3 directionVector = GetMovementInput();
 
-        float effectivespeed = _speed;
-        
-        if ( _combat !=null && _combat.IsBlocking())
+        float effectiveSpeed = _speed;
+
+        if (_combat != null && _combat.IsBlocking())
         {
-            effectivespeed *= 0.2f; //20% the normal speed
-            
+            effectiveSpeed *= 0.2f; // 20% speed when blocking
         }
-        Vector3 movementVector = directionVector.normalized * effectivespeed * Time.fixedDeltaTime;
+
+        Vector3 movementVector = directionVector.normalized * effectiveSpeed * Time.fixedDeltaTime;
 
         _rb.MovePosition(_rb.position + movementVector);
     }
+
 
     private void Rotation()
     {
@@ -173,20 +175,44 @@ public class CharacterControll : MonoBehaviour
 
     private void Dodge()
     {
-        if (Input.GetKey(KeyCode.Space) && _isDodging == false)
+        if (Input.GetKey(KeyCode.Space) && !_isDodging)
         {
-            _rb.AddForce(_lookDirection * _dodgePower, ForceMode.Impulse);
+            Vector3 movementInput = GetMovementInput();
+
+            if (movementInput != Vector3.zero)
+            {
+                float effectiveDodgePower = _dodgePower;
+
+                if (_combat != null && _combat.IsBlocking())
+                {
+                    effectiveDodgePower *= 0.2f; // Optional: slow dodge when blocking
+                }
+
+                _rb.AddForce(movementInput.normalized * effectiveDodgePower, ForceMode.Impulse);
+            }
+
             _isDodging = true;
             _dodgeTimer.Restart();
-            if (_rollThroughEnemy) GetComponent<CapsuleCollider>().excludeLayers = LayerMask.GetMask("Enemy");
+
+            if (_rollThroughEnemy)
+            {
+                GetComponent<CapsuleCollider>().excludeLayers = LayerMask.GetMask("Enemy");
+            }
+
             canDodge = false;
         }
+
         if ((float)_dodgeTimer.ElapsedMilliseconds / 1000 >= _dodgeCooldown)
         {
             _isDodging = false;
             _dodgeTimer.Stop();
             _rb.angularVelocity = Vector3.zero;
-            if (_rollThroughEnemy) GetComponent<CapsuleCollider>().excludeLayers = LayerMask.GetMask("");
+
+            if (_rollThroughEnemy)
+            {
+                GetComponent<CapsuleCollider>().excludeLayers = LayerMask.GetMask("");
+            }
+
             canDodge = true;
         }
     }
