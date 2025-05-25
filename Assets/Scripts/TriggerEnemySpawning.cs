@@ -11,11 +11,11 @@ public class TriggerEnemySpawning : MonoBehaviour
         {
             if (!isBossTrigger)
             {
-                graveSpawning.SpawnGravesAround(false);
+                graveSpawning.SpawnGravesAround(false, null);
                 Destroy(gameObject);
             } else
             {
-                graveSpawning.SpawnBossGraveAround(false);
+                graveSpawning.SpawnBossGraveAround();
                 Destroy(gameObject);
             }
         }
