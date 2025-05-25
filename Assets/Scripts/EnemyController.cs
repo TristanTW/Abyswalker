@@ -11,6 +11,7 @@ public class EnemyController : MonoBehaviour
     public GameObject _body;
     public Rigidbody _rb;
     public GameObject pointOrb;
+    public bool isBoss;
 
     private bool isRecharging = false;
     private float rechargeDuration = 2f;
@@ -33,6 +34,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private Image _swordVisueleCooldown;
 
     private CharacterControll characterControllerScript;
+    private GraveSpawning graveSpawningScript;
 
     public Material defaultMat;
     public Material hitMat;
@@ -49,6 +51,12 @@ public class EnemyController : MonoBehaviour
         if (combatScript == null)
         {
             Debug.LogError("Combat script not found on the Player object.");
+        }
+
+        graveSpawningScript = player.GetComponent<GraveSpawning>();
+        if (graveSpawningScript == null)
+        {
+            Debug.LogError("GraveSpawning script not found on the Player object.");
         }
     }
 
@@ -169,6 +177,11 @@ public class EnemyController : MonoBehaviour
         if (healthFillImage != null)
         {
             targetFill = currentHealth / maxHealth;
+        }
+
+        if (isBoss && currentHealth <= 50f) 
+        {
+            graveSpawningScript.SpawnGravesAround(true);
         }
 
         if (currentHealth <= 0.01f)
