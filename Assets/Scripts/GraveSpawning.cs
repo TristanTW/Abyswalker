@@ -9,15 +9,18 @@ public class GraveSpawning : MonoBehaviour
     public Collider bossRoomCollider;
     public float radius = 5f;
     public int maxGraveAmount = 3;
+    public int maxBossGraveAmount = 2;
 
     private GameObject player;
+    private GameObject boss;
 
     private void Awake()
     {
         player = GameObject.FindWithTag("Player");
+        boss = GameObject.FindWithTag("Boss");
     }
 
-    public void SpawnGravesAround()
+    public void SpawnGravesAround(bool isBoss)
     {
         Collider currentRoom = GetPlayerCurrentRoom();
         if (currentRoom == null)
@@ -27,13 +30,25 @@ public class GraveSpawning : MonoBehaviour
         }
 
         int graveAmount = 0;
-        while (graveAmount < maxGraveAmount)
-        {
-            Vector3? spawnPosition = GetValidSpawnPointOnCircle(radius, currentRoom);
-            if (spawnPosition != null)
+        if (!isBoss) {
+            while (graveAmount < maxGraveAmount)
             {
-                Instantiate(graveSpawn, spawnPosition.Value, Quaternion.identity);
-                graveAmount++;
+                Vector3? spawnPosition = GetValidSpawnPointOnCircle(radius, currentRoom, player);
+                if (spawnPosition != null)
+                {
+                    Instantiate(graveSpawn, spawnPosition.Value, Quaternion.identity);
+                    graveAmount++;
+                }
+            }
+        } else {
+            while (graveAmount < maxBossGraveAmount)
+            {
+                Vector3? spawnPosition = GetValidSpawnPointOnCircle(radius, currentRoom, boss);
+                if (spawnPosition != null)
+                {
+                    Instantiate(graveSpawn, spawnPosition.Value, Quaternion.identity);
+                    graveAmount++;
+                }
             }
         }
     }
@@ -59,7 +74,7 @@ public class GraveSpawning : MonoBehaviour
         return null;
     }
 
-    private Vector3? GetValidSpawnPointOnCircle(float radius, Collider areaCollider)
+    private Vector3? GetValidSpawnPointOnCircle(float radius, Collider areaCollider, GameObject spawnTarget)
     {
         int maxAttempts = 10;
 
@@ -67,9 +82,9 @@ public class GraveSpawning : MonoBehaviour
         {
             Vector2 offset2D = Random.insideUnitCircle.normalized * radius;
             Vector3 spawnPoint = new Vector3(
-                player.transform.position.x + offset2D.x,
+                spawnTarget.transform.position.x + offset2D.x,
                 0,
-                player.transform.position.z + offset2D.y
+                spawnTarget.transform.position.z + offset2D.y
             );
 
             if (IsPointInsideCollider(areaCollider, spawnPoint))
