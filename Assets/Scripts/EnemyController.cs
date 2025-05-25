@@ -181,7 +181,7 @@ public class EnemyController : MonoBehaviour
 
         if (isBoss && currentHealth <= 50f) 
         {
-            graveSpawningScript.SpawnGravesAround(true);
+            graveSpawningScript.SpawnGravesAround(true, gameObject);
         }
 
         if (currentHealth <= 0.01f)
