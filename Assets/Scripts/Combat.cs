@@ -143,10 +143,7 @@ public class Combat : MonoBehaviour
                 string damageType = (type == "Light") ? "Light" : "Heavy";
                 enemyController.TakeDamage(damage, damageType);
             }
-            else
-            {
-                Debug.LogWarning("Enemy does not have an EnemyController component.");
-            }
+            
         }
 
         yield return new WaitForSeconds(duration);
