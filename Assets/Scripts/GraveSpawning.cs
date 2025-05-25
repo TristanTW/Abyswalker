@@ -20,15 +20,14 @@ public class GraveSpawning : MonoBehaviour
 
     public void SpawnGravesAround(bool isBoss, GameObject boss)
     {
-        Collider currentRoom = GetPlayerCurrentRoom();
-        if (currentRoom == null)
-        {
-            Debug.LogWarning("Player is not inside any room.");
-            return;
-        }
-
         int graveAmount = 0;
         if (!isBoss) {
+            Collider currentRoom = GetPlayerCurrentRoom();
+            if (currentRoom == null)
+            {
+                Debug.LogWarning("Player is not inside any room.");
+                return;
+            }
             while (graveAmount < maxGraveAmount)
             {
                 Vector3? spawnPosition = GetValidSpawnPointOnCircle(radius, currentRoom, player);
