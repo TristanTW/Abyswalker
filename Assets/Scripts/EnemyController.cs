@@ -43,6 +43,7 @@ public class EnemyController : MonoBehaviour
     private float _knockbackPowerLight = 2;
     private float _knockbackPowerHeavy = 4;
 
+    private bool hasSpawnedAds = false;
     private void Awake()
     {
         player = GameObject.FindWithTag("Player");
@@ -179,9 +180,10 @@ public class EnemyController : MonoBehaviour
             targetFill = currentHealth / maxHealth;
         }
 
-        if (isBoss && currentHealth <= 50f) 
+        if (isBoss == true && hasSpawnedAds == false && currentHealth <= maxHealth/2) 
         {
             graveSpawningScript.SpawnGravesAround(true, gameObject);
+            hasSpawnedAds = true;
         }
 
         if (currentHealth <= 0.01f)
