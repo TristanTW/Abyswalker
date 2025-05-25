@@ -12,15 +12,13 @@ public class GraveSpawning : MonoBehaviour
     public int maxBossGraveAmount = 2;
 
     private GameObject player;
-    private GameObject boss;
 
     private void Awake()
     {
         player = GameObject.FindWithTag("Player");
-        boss = GameObject.FindWithTag("Boss");
     }
 
-    public void SpawnGravesAround(bool isBoss)
+    public void SpawnGravesAround(bool isBoss, GameObject boss)
     {
         Collider currentRoom = GetPlayerCurrentRoom();
         if (currentRoom == null)
@@ -40,7 +38,7 @@ public class GraveSpawning : MonoBehaviour
                     graveAmount++;
                 }
             }
-        } else {
+        } else if (isBoss && boss != null) {
             while (graveAmount < maxBossGraveAmount)
             {
                 Vector3? spawnPosition = GetValidSpawnPointOnCircle(radius, currentRoom, boss);
