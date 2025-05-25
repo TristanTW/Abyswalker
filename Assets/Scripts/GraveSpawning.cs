@@ -40,7 +40,7 @@ public class GraveSpawning : MonoBehaviour
         } else if (isBoss && boss != null) {
             while (graveAmount < maxBossGraveAmount)
             {
-                Vector3? spawnPosition = GetValidSpawnPointOnCircle(radius, currentRoom, boss);
+                Vector3? spawnPosition = GetValidSpawnPointOnCircle(radius, bossRoomCollider, boss);
                 if (spawnPosition != null)
                 {
                     Instantiate(graveSpawn, spawnPosition.Value, Quaternion.identity);
