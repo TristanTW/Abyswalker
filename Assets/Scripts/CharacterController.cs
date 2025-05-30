@@ -7,6 +7,8 @@ public class CharacterControll : MonoBehaviour
 {
 
     [SerializeField] private AudioClip _recieveDamage;
+    [SerializeField] private AudioClip _healSoundClip;
+
     [SerializeField] private GameObject _damageScreen;
       
 
@@ -23,15 +25,12 @@ public class CharacterControll : MonoBehaviour
     private GameObject _body;
 
     private float _hitPoints = 100;
-    private GameObject _character;
-    private GameObject _skeletonSword;
 
     private float _maxHitPoints = 100;
     [SerializeField] private int _healsRemaining = 5;
     [SerializeField] private TextMeshProUGUI _healCounterText;
 
     private Rigidbody _rb;
-    private Rigidbody _skellybody;
 
     public Vector3 _lookDirection = new Vector3(1, 0, 0);
     public Vector3 LookDirection => _lookDirection;
@@ -56,14 +55,14 @@ public class CharacterControll : MonoBehaviour
     public float resetMaterialDelay = 0.2f;
 
     private Combat _combat;
-
+    private Animator _playerAnimator;
     void Start()
     {
         _combat = GetComponent<Combat>();
+        _playerAnimator = GetComponent<Animator>();
 
         Time.timeScale = 1.0f;
         _rb = GetComponent<Rigidbody>();
-        _skellybody = GetComponent<Rigidbody>();
 
         UpdateHealCounterUI();
     }
@@ -105,9 +104,12 @@ public class CharacterControll : MonoBehaviour
     }
     private void Healing()
     {
+
         if (_healsRemaining > 0)
         {
-            _hitPoints += 15;
+            _hitPoints += 25;
+            AudioControllerScript.Instance.PlaySound(_healSoundClip);
+
             if (_hitPoints > _maxHitPoints)
             {
                 _hitPoints = _maxHitPoints;
@@ -137,9 +139,12 @@ public class CharacterControll : MonoBehaviour
         Vector3 directionVector = GetMovementInput();
 
         float effectiveSpeed = _speed;
-
+        _playerAnimator.SetBool("isWalking", true);
         if (_combat != null && _combat.IsBlocking())
         {
+            _playerAnimator.SetBool("isBlocking", true);
+            _playerAnimator.SetBool("isWalking", false);
+
             effectiveSpeed *= 0.2f; // 20% speed when blocking
         }
 

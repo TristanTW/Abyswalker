@@ -37,6 +37,7 @@ public class Combat : MonoBehaviour
     private bool blockRecharging = false;
     private float rechargerTimerForShieldSprite = 0f;
     private AudioSource audioSource;
+    private Animator _playerAnimator;
     //block sound
     [SerializeField] private AudioClip blockHitSound;
 
@@ -46,6 +47,7 @@ public class Combat : MonoBehaviour
 
     private void Start()
     {
+        _playerAnimator = GetComponent<Animator>();
         _shieldSprite.enabled = false;
         _shieldSpriteBroken.enabled = false;
         _shieldSpriteRecharging.enabled = false;
@@ -65,9 +67,9 @@ public class Combat : MonoBehaviour
         {
 
             rechargerTimerForShieldSprite += Time.deltaTime;
-            if (rechargerTimerForShieldSprite >= 1f/10)
+            if (rechargerTimerForShieldSprite >= 1f / 10)
             {
-                _shieldSpriteRecharging.fillAmount += 0.1f/10;
+                _shieldSpriteRecharging.fillAmount += 0.1f / 10;
                 rechargerTimerForShieldSprite = 0f;
             }
         }
@@ -84,16 +86,20 @@ public class Combat : MonoBehaviour
                 isBlocking = true;
                 _shieldSprite.enabled = true;
                 Debug.Log("Blocking started");
+                _playerAnimator.SetBool("isBlocking", true);
             }
             else
             {
                 Debug.Log("Block is recharging!");
+
             }
         }
 
         if (Input.GetKeyUp(KeyCode.F))
         {
             isBlocking = false;
+            _playerAnimator.SetBool("isBlocking", false);
+
             _shieldSprite.enabled = false;
             Debug.Log("Blocking stopped");
         }
@@ -105,8 +111,10 @@ public class Combat : MonoBehaviour
         // Light attack
         if (Input.GetMouseButtonDown(0) && Time.time - lastAttackTime >= lightAttackCooldown)
         {
+            _playerAnimator.SetBool("isAttacking", true);
             lastAttackTime = Time.time;
             StartCoroutine(PerformAttack("Light"));
+
             GetComponent<CharacterControll>().movementCooldown = (int)(_lightAttackMovementCooldown * 100);
         }
 
@@ -143,7 +151,7 @@ public class Combat : MonoBehaviour
                 string damageType = (type == "Light") ? "Light" : "Heavy";
                 enemyController.TakeDamage(damage, damageType);
             }
-            
+
         }
 
         yield return new WaitForSeconds(duration);
