@@ -36,10 +36,10 @@ public class GateCode : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        _leftGateClosed = _leftGate.transform.position;
-        _rightGateClosed = _rightGate.transform.position;
-        _topBeamClosed = _topBeam.transform.position;
-        _bottomBeamClosed = _bottomBeam.transform.position;
+        _leftGateClosed = _leftGate.transform.localPosition;
+        _rightGateClosed = _rightGate.transform.localPosition;
+        _topBeamClosed = _topBeam.transform.localPosition;
+        _bottomBeamClosed = _bottomBeam.transform.localPosition;
 
         _frontCollider = _frontZone.GetComponent<Collider>();
         _backCollider = _backZone.GetComponent<Collider>();
@@ -70,9 +70,9 @@ public class GateCode : MonoBehaviour
 
     private void MoveGatePart(GameObject gatePart, Vector3 closedPoint, float distance)
     {
-        if (gatePart.transform.position.z != closedPoint.z + distance)
+        if (gatePart.transform.localPosition.z != closedPoint.z + distance)
         {
-            gatePart.transform.position = Vector3.Lerp(gatePart.transform.position, new Vector3(closedPoint.x, closedPoint.y, closedPoint.z + distance), _gateSpeed);
+            gatePart.transform.localPosition = Vector3.Lerp(gatePart.transform.localPosition, new Vector3(closedPoint.x, closedPoint.y, closedPoint.z + distance), _gateSpeed);
         }
     }
 
