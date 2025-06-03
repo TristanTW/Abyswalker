@@ -270,7 +270,6 @@ GameObject:
   - component: {fileID: 3797498744515918785}
   - component: {fileID: 5079988159085679940}
   - component: {fileID: 8792530172488559081}
-  - component: {fileID: 9084421682968653699}
   m_Layer: 5
   m_Name: VictoryScreen
   m_TagString: Untagged
@@ -377,20 +376,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _quit: {fileID: 5640070907616158857}
   _respawn: {fileID: 272509423672481527}
---- !u!114 &9084421682968653699
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5656049907698739346}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70524e265a9ca06458a6a2b9dab02485, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _boss: {fileID: 1164817432161438057, guid: 3a226ac91536b96469bd8281db5b0fa0, type: 3}
-  _victoryScreen: {fileID: 5656049907698739346}
 --- !u!1 &5990657793471999120
 GameObject:
   m_ObjectHideFlags: 0

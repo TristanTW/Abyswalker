@@ -8,41 +8,23 @@ public class CharacterControll : MonoBehaviour
 
     [SerializeField] private AudioClip _recieveDamage;
     [SerializeField] private AudioClip _healSoundClip;
-
     [SerializeField] private GameObject _damageScreen;
-      
-
-    [SerializeField]
-    private float _speed;
-
-    [SerializeField]
-    private float _rotationSpeed;
-
-    [SerializeField]
-    private Camera _camera;
-
-    [SerializeField]
-    private GameObject _body;
-
+    [SerializeField] private float _speed;
+    [SerializeField] private float _rotationSpeed;
+    [SerializeField] private Camera _camera;
+    [SerializeField] private GameObject _body;
     private float _hitPoints = 100;
-
     private float _maxHitPoints = 100;
     [SerializeField] private int _healsRemaining = 5;
     [SerializeField] private TextMeshProUGUI _healCounterText;
-
     private Rigidbody _rb;
-
     public Vector3 _lookDirection = new Vector3(1, 0, 0);
     public Vector3 LookDirection => _lookDirection;
-
     private bool _isDodging = false;
     private Stopwatch _dodgeTimer = new Stopwatch();
-    [SerializeField]
-    private float _dodgePower = 10;
-    [SerializeField]
-    private float _dodgeCooldown = 1;
-    [SerializeField]
-    private bool _rollThroughEnemy = false;
+    [SerializeField] private float _dodgePower = 10;
+    [SerializeField] private float _dodgeCooldown = 1;
+    [SerializeField] private bool _rollThroughEnemy = false;
 
     private Vector3 _mouseLocation = new Vector3(0, 0, 1);
 
@@ -118,7 +100,7 @@ public class CharacterControll : MonoBehaviour
             _healsRemaining--;
             UpdateHealCounterUI();
         }
-        
+
     }
     private Vector3 GetMovementInput()
     {
@@ -136,21 +118,27 @@ public class CharacterControll : MonoBehaviour
     }
     private void Movement()
     {
-        Vector3 directionVector = GetMovementInput();
-
-        float effectiveSpeed = _speed;
-        _playerAnimator.SetBool("isWalking", true);
-        if (_combat != null && _combat.IsBlocking())
+        if (_combat._isPositionLocked == true)
         {
-            _playerAnimator.SetBool("isBlocking", true);
-            _playerAnimator.SetBool("isWalking", false);
-
-            effectiveSpeed *= 0.2f; // 20% speed when blocking
+            return;
         }
+        else
+        {
 
-        Vector3 movementVector = directionVector.normalized * effectiveSpeed * Time.fixedDeltaTime;
+            Vector3 directionVector = GetMovementInput();
 
-        _rb.MovePosition(_rb.position + movementVector);
+            float effectiveSpeed = _speed;
+            if (_combat != null && _combat.IsBlocking())
+            {
+                _playerAnimator.SetBool("isBlocking", true);
+
+                effectiveSpeed *= 0.2f; // 20% speed when blocking
+            }
+
+            Vector3 movementVector = directionVector.normalized * effectiveSpeed * Time.fixedDeltaTime;
+
+            _rb.MovePosition(_rb.position + movementVector);
+        }
     }
 
 
@@ -182,6 +170,7 @@ public class CharacterControll : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space) && !_isDodging)
         {
+            _playerAnimator.SetBool("isRolling", true);
             Vector3 movementInput = GetMovementInput();
 
             if (movementInput != Vector3.zero)
@@ -209,6 +198,7 @@ public class CharacterControll : MonoBehaviour
 
         if ((float)_dodgeTimer.ElapsedMilliseconds / 1000 >= _dodgeCooldown)
         {
+            _playerAnimator.SetBool("isRolling", false);
             _isDodging = false;
             _dodgeTimer.Stop();
             _rb.angularVelocity = Vector3.zero;
@@ -232,6 +222,9 @@ public class CharacterControll : MonoBehaviour
     {
         _hitPoints -= damage;
 
+        //animation
+        _playerAnimator.SetBool("gotHit", true);
+
         // Sound
         AudioControllerScript.Instance.PlaySound(_recieveDamage);
 
@@ -254,5 +247,7 @@ public class CharacterControll : MonoBehaviour
     {
         yield return new WaitForSeconds(resetMaterialDelay);
         _body.GetComponent<Renderer>().material = defaultMat;
+        _playerAnimator.SetBool("gotHit", false);
+
     }
 }

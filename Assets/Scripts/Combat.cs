@@ -22,7 +22,8 @@ public class Combat : MonoBehaviour
     private float lastAttackTime = 0f;
 
     //shield UI
-    [SerializeField] private Image _shieldSprite;
+    [SerializeField] private Image _shieldSpriteFrame;
+    [SerializeField] private Image _shieldSpriteCurrentHP;
     [SerializeField] private Image _shieldSpriteBroken;
     [SerializeField] private Image _shieldSpriteRecharging;
     public bool isBlocking = false;
@@ -38,6 +39,7 @@ public class Combat : MonoBehaviour
     private float rechargerTimerForShieldSprite = 0f;
     private AudioSource audioSource;
     private Animator _playerAnimator;
+    public bool _isPositionLocked;
     //block sound
     [SerializeField] private AudioClip blockHitSound;
 
@@ -47,8 +49,10 @@ public class Combat : MonoBehaviour
 
     private void Start()
     {
+        _isPositionLocked = false;
         _playerAnimator = GetComponent<Animator>();
-        _shieldSprite.enabled = false;
+        _shieldSpriteFrame.enabled = false;
+        _shieldSpriteCurrentHP.enabled = false;
         _shieldSpriteBroken.enabled = false;
         _shieldSpriteRecharging.enabled = false;
 
@@ -79,18 +83,20 @@ public class Combat : MonoBehaviour
     void HandleInput()
     {
         // Block toggle (can change to "hold" style if preferred)
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKey(KeyCode.F))
         {
             if (!blockRecharging)
             {
                 isBlocking = true;
-                _shieldSprite.enabled = true;
+                _shieldSpriteFrame.enabled = true;
+                _shieldSpriteCurrentHP.enabled = true;
                 Debug.Log("Blocking started");
                 _playerAnimator.SetBool("isBlocking", true);
             }
             else
             {
                 Debug.Log("Block is recharging!");
+                _playerAnimator.SetBool("isBlocking", false);
 
             }
         }
@@ -100,7 +106,8 @@ public class Combat : MonoBehaviour
             isBlocking = false;
             _playerAnimator.SetBool("isBlocking", false);
 
-            _shieldSprite.enabled = false;
+            _shieldSpriteFrame.enabled = false;
+            _shieldSpriteCurrentHP.enabled = false;
             Debug.Log("Blocking stopped");
         }
 
@@ -111,16 +118,20 @@ public class Combat : MonoBehaviour
         // Light attack
         if (Input.GetMouseButtonDown(0) && Time.time - lastAttackTime >= lightAttackCooldown)
         {
+            _playerAnimator.SetBool("isWalking", false);
             _playerAnimator.SetBool("isAttacking", true);
+
             lastAttackTime = Time.time;
             StartCoroutine(PerformAttack("Light"));
-
             GetComponent<CharacterControll>().movementCooldown = (int)(_lightAttackMovementCooldown * 100);
         }
 
         // Heavy attack
         if (Input.GetMouseButtonDown(1) && Time.time - lastAttackTime >= heavyAttackCooldown)
         {
+            _playerAnimator.SetBool("isWalking", false);
+            _playerAnimator.SetBool("isAttacking", true);
+
             lastAttackTime = Time.time;
             StartCoroutine(PerformAttack("Heavy"));
             GetComponent<CharacterControll>().movementCooldown = (int)(_heavyAttackMovementCooldown * 100);
@@ -155,6 +166,7 @@ public class Combat : MonoBehaviour
         }
 
         yield return new WaitForSeconds(duration);
+        _playerAnimator.SetBool("isAttacking", false);
         isAttacking = false;
     }
     void OnDrawGizmos()
@@ -187,6 +199,7 @@ public class Combat : MonoBehaviour
         if (!isBlocking) return;
 
         currentBlockHits--;
+        _shieldSpriteCurrentHP.fillAmount -= 0.25f;
         if (blockHitSound != null)
         {
             audioSource.PlayOneShot(blockHitSound);
@@ -196,16 +209,20 @@ public class Combat : MonoBehaviour
 
         if (currentBlockHits <= 0)
         {
-            _shieldSpriteBroken.enabled = true;
-            _shieldSpriteRecharging.enabled = true;
-            _shieldSpriteRecharging.fillAmount = 0;
-
-            if (blockBreakSound != null)
+            if (!_isPositionLocked)
             {
-                audioSource.PlayOneShot(blockBreakSound);
-            }
 
-            StartCoroutine(BlockRecharge());
+                _shieldSpriteBroken.enabled = true;
+                _shieldSpriteRecharging.enabled = true;
+                _shieldSpriteRecharging.fillAmount = 0;
+
+                if (blockBreakSound != null)
+                {
+                    audioSource.PlayOneShot(blockBreakSound);
+                }
+
+                StartCoroutine(BlockRecharge());
+            }
 
 
         }
@@ -214,8 +231,18 @@ public class Combat : MonoBehaviour
 
     private System.Collections.IEnumerator BlockRecharge()
     {
+        //on floor needs to get up
+        _playerAnimator.SetBool("isGuardBroken", true);
+        _playerAnimator.SetBool("isBlocking", false);
+        _isPositionLocked = true;
+        yield return new WaitForSeconds(5);
+        _isPositionLocked = false;
+        _playerAnimator.SetBool("isGuardBroken", false);
+        //stood up
+
         isBlocking = false;
-        _shieldSprite.enabled = false;
+        _shieldSpriteCurrentHP.enabled = false;
+        _shieldSpriteFrame.enabled = false;
         blockRecharging = true;
         Debug.Log("Block depleted. Recharging...");
         yield return new WaitForSeconds(blockRechargeTime);
@@ -223,9 +250,11 @@ public class Combat : MonoBehaviour
         blockRecharging = false;
         currentBlockHits = maxBlockHits;
 
+
         _shieldSpriteRecharging.fillAmount = 1;
         _shieldSpriteBroken.enabled = false;
         _shieldSpriteRecharging.enabled = false;
+        _shieldSpriteCurrentHP.fillAmount = 1;
         Debug.Log("Block recharged.");
     }
 }
