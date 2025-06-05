@@ -220,7 +220,8 @@ public class Combat : MonoBehaviour
                 {
                     audioSource.PlayOneShot(blockBreakSound);
                 }
-
+                _playerAnimator.SetBool("isGuardBroken", true);
+                _playerAnimator.SetBool("isBlocking", false);
                 StartCoroutine(BlockRecharge());
             }
 
@@ -232,12 +233,11 @@ public class Combat : MonoBehaviour
     private System.Collections.IEnumerator BlockRecharge()
     {
         //on floor needs to get up
-        _playerAnimator.SetBool("isGuardBroken", true);
-        _playerAnimator.SetBool("isBlocking", false);
+        
         _isPositionLocked = true;
         yield return new WaitForSeconds(5);
-        _isPositionLocked = false;
         _playerAnimator.SetBool("isGuardBroken", false);
+        _isPositionLocked = false;
         //stood up
 
         isBlocking = false;

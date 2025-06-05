@@ -1,11 +1,9 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIbuttonScript : MonoBehaviour
 {
-    [SerializeField] private Button _quit;
-    [SerializeField] private Button _respawn;
+
     [SerializeField] private Button _play;
 
     [SerializeField] private GameObject startMenu;
@@ -14,31 +12,12 @@ public class UIbuttonScript : MonoBehaviour
 
     void Start()
     {
-        _quit.onClick.AddListener(Quitgame);
-        _respawn.onClick.AddListener(Respawn);
         _play.onClick.AddListener(PlayGame);
 
         // Ensure gameplay menu is hidden at start
         if (gameplayMenu != null)
             gameplayMenu.SetActive(false);
     }
-
-    void Quitgame()
-    {
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-        Application.Quit();
-#endif
-        Debug.Log("Quit");
-    }
-
-    void Respawn()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        Debug.Log("Respawn");
-    }
-
     void PlayGame()
     {
         // Play audio

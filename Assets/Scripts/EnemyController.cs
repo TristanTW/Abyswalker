@@ -30,7 +30,7 @@ public class EnemyController : MonoBehaviour
 
     public float damage = 10f;
     public float damageCooldown = 10f;
-    private float damageCooldownTimer =0f;
+    private float damageCooldownTimer = 0f;
     [SerializeField] private Image _swordVisueleCooldown;
 
     private CharacterControll characterControllerScript;
@@ -44,6 +44,9 @@ public class EnemyController : MonoBehaviour
     private float _knockbackPowerHeavy = 4;
 
     private bool hasSpawnedAds = false;
+
+    private Animator _enemyAnimator;
+    private bool isdead = false;
     private void Awake()
     {
         player = GameObject.FindWithTag("Player");
@@ -64,7 +67,7 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         damageCooldownTimer = damageCooldown;
-
+        _enemyAnimator = GetComponent<Animator>();
         if (player != null)
         {
             characterControllerScript = player.GetComponent<CharacterControll>();
@@ -89,6 +92,9 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
+        if (isdead) { return; }
+
+        this.gameObject.transform.LookAt(player.transform.position);
         if (player != null && !isRecharging)
         {
             float distance = Vector3.Distance(transform.position, player.transform.position);
@@ -124,6 +130,8 @@ public class EnemyController : MonoBehaviour
         if (damageCooldownTimer >= damageCooldown)
         {
             _swordVisueleCooldown.color = Color.red;
+            _enemyAnimator.SetBool("_isPunching", true);
+
             if (combatScript != null && combatScript.IsBlocking())
             {
                 Debug.Log("Player Blocked");
@@ -146,6 +154,11 @@ public class EnemyController : MonoBehaviour
 
     public void TakeDamage(float amount, string type)
     {
+        if (isdead) { return; }
+
+        //anim
+        _enemyAnimator.SetBool("_gotHit", true);
+
         //sound
         AudioControllerScript.Instance.PlaySound(_doDamage);
 
@@ -180,7 +193,7 @@ public class EnemyController : MonoBehaviour
             targetFill = currentHealth / maxHealth;
         }
 
-        if (isBoss == true && hasSpawnedAds == false && currentHealth <= maxHealth/2) 
+        if (isBoss == true && hasSpawnedAds == false && currentHealth <= maxHealth / 2)
         {
             graveSpawningScript.SpawnGravesAround(true, gameObject);
             hasSpawnedAds = true;
@@ -198,26 +211,39 @@ public class EnemyController : MonoBehaviour
     {
         yield return new WaitForSeconds(resetMaterialDelay);
         _body.GetComponent<Renderer>().material = defaultMat;
+        _enemyAnimator.SetBool("_gotHit", false);
     }
 
     void Die()
     {
+        _enemyAnimator.SetBool("_isDead", true);
         Debug.Log("Enemy defeated!");
         if (healthBarCanvas != null)
             healthBarCanvas.gameObject.SetActive(false);
 
         Vector2 deathLocation = new Vector2(transform.position.x, transform.position.z);
 
-        Destroy(gameObject);
+        isdead = true;
+        StartCoroutine(WaitForDeath());
 
         Vector3 deathDropSpawnLocation = new Vector3(deathLocation.x, 1, deathLocation.y);
 
         GameObject deathDrop = Instantiate(pointOrb, deathDropSpawnLocation, Quaternion.identity);
     }
+
+    private System.Collections.IEnumerator WaitForDeath()
+    {
+        yield return new WaitForSeconds(1.5f);
+        _enemyAnimator.SetBool("_isDead", false);
+        Destroy(gameObject);
+
+
+    }
     private System.Collections.IEnumerator Recharge()
     {
         isRecharging = true;
         yield return new WaitForSeconds(rechargeDuration);
+        _enemyAnimator.SetBool("_isPunching", false);
         isRecharging = false;
 
     }
