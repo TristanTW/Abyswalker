@@ -9,6 +9,7 @@ TagManager:
   - HealthBar
   - PlayerTrigger
   - Boss
+  - EnemySpawnTrigger
   layers:
   - Default
   - TransparentFX

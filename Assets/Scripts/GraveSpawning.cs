@@ -16,6 +16,12 @@ public class GraveSpawning : MonoBehaviour
     private void Awake()
     {
         player = GameObject.FindWithTag("Player");
+
+        GameObject[] enemySpawn = GameObject.FindGameObjectsWithTag("EnemySpawnTrigger");
+        foreach (var item in enemySpawn)
+        {
+            roomColliders.Add(item.gameObject.GetComponent<Collider>());
+        }
     }
 
     public void SpawnGravesAround(bool isBoss, GameObject boss)
