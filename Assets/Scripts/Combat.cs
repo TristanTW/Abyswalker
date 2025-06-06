@@ -12,13 +12,13 @@ public class Combat : MonoBehaviour
     public Transform attackPoint; // Assign this in the inspector
     public LayerMask enemyLayers; // Assign this to “Hydra” layer or tag
 
-    public float lightAttackCooldown = 0.5f;
-    public float heavyAttackCooldown = 1f;
+    public float lightAttackCooldown = 1f;
+    public float heavyAttackCooldown = 2f;
 
     [SerializeField]
-    private float _lightAttackMovementCooldown = 0.1f;
+    private float _lightAttackMovementCooldown = 0.2f;
     [SerializeField]
-    private float _heavyAttackMovementCooldown = 0.3f;
+    private float _heavyAttackMovementCooldown = 0.6f;
     private float lastAttackTime = 0f;
 
     //shield UI

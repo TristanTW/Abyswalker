@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class UIbuttonScript : MonoBehaviour
 {
 
+    [SerializeField] private Button _quit;
     [SerializeField] private Button _play;
 
     [SerializeField] private GameObject startMenu;
@@ -12,11 +13,21 @@ public class UIbuttonScript : MonoBehaviour
 
     void Start()
     {
+        _quit.onClick.AddListener(Quitgame);
         _play.onClick.AddListener(PlayGame);
 
         // Ensure gameplay menu is hidden at start
         if (gameplayMenu != null)
             gameplayMenu.SetActive(false);
+    }
+    void Quitgame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+        Debug.Log("Quit");
     }
     void PlayGame()
     {

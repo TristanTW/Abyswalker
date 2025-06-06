@@ -31,6 +31,7 @@ public class DeathScreenScript : MonoBehaviour
 
     void Respawn()
     {
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().ToString());
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Debug.Log("Respawn");
     }

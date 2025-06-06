@@ -269,7 +269,7 @@ GameObject:
   - component: {fileID: 7569217684640719338}
   - component: {fileID: 3797498744515918785}
   - component: {fileID: 5079988159085679940}
-  - component: {fileID: 8792530172488559081}
+  - component: {fileID: 838335179238254123}
   m_Layer: 5
   m_Name: VictoryScreen
   m_TagString: Untagged
@@ -362,7 +362,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &8792530172488559081
+--- !u!114 &838335179238254123
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -371,7 +371,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5656049907698739346}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec829362c3aeb6c4ca03b09ca5bb6591, type: 3}
+  m_Script: {fileID: 11500000, guid: bacca68f178fe21478a21160c540deaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _quit: {fileID: 5640070907616158857}
