@@ -28,9 +28,6 @@ public class UIbuttonScript : MonoBehaviour
     void PlayGame()
     {
         SceneManager.LoadScene("Main");
-        // Hide start menu
-        if (startMenu != null)
-            startMenu.SetActive(false);
         Debug.Log("Game Started");
     }
 }

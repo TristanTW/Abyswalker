@@ -104,7 +104,7 @@ Transform:
   m_GameObject: {fileID: 1164817432161438057}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.93, z: 0}
+  m_LocalPosition: {x: 0, y: 2.09, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -123,6 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d5910278c1df8840aa05274d1e1ceb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enemySkinnedMeshRenderer: {fileID: 2351817071720593816}
   _doDamage: {fileID: 8300000, guid: fc9992cbc6f730d44b2f55777c655d56, type: 3}
   _body: {fileID: 1683243900721631112}
   _rb: {fileID: 7409352973826319447}
@@ -134,8 +135,7 @@ MonoBehaviour:
   damage: 20
   damageCooldown: 3
   _swordVisueleCooldown: {fileID: 2431657987453228167}
-  defaultMat: {fileID: 2100000, guid: a96e062dfaf47024ab9d317e5a7794cb, type: 2}
-  hitMat: {fileID: 2100000, guid: 27e0296a54f0c0c4ca8039b21f804270, type: 2}
+  _enemyMaterial: {fileID: 2100000, guid: d75bf26287cff684ea6e1c317d0286ee, type: 2}
   resetMaterialDelay: 0.2
 --- !u!136 &3826995899413420235
 CapsuleCollider:
@@ -683,5 +683,10 @@ PrefabInstance:
 --- !u!4 &582876032575793116 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 711038b512c6dcd4b868668c6f39fd99, type: 3}
+  m_PrefabInstance: {fileID: 1124901364182908983}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &2351817071720593816 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -5818889320171079249, guid: 711038b512c6dcd4b868668c6f39fd99, type: 3}
   m_PrefabInstance: {fileID: 1124901364182908983}
   m_PrefabAsset: {fileID: 0}
