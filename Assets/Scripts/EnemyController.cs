@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
 {
+    [SerializeField] private SkinnedMeshRenderer _enemySkinnedMeshRenderer;
 
     [SerializeField] private AudioClip _doDamage;
 
@@ -37,8 +38,10 @@ public class EnemyController : MonoBehaviour
     private CharacterControll characterControllerScript;
     private GraveSpawning graveSpawningScript;
 
-    public Material defaultMat;
-    public Material hitMat;
+    [SerializeField] private Material _enemyMaterial;
+    private Color _enemyColor = Color.red;
+    private Color _hitColor = Color.white;
+
     public float resetMaterialDelay = 0.2f;
 
     private float _knockbackPowerLight = 1;
@@ -69,6 +72,9 @@ public class EnemyController : MonoBehaviour
 
     void Start()
     {
+        _enemySkinnedMeshRenderer.material = new Material(_enemySkinnedMeshRenderer.material);
+        _enemyMaterial = _enemySkinnedMeshRenderer.material;
+
         damageCooldownTimer = damageCooldown;
         _enemyAnimator = GetComponent<Animator>();
         if (player != null)
@@ -173,7 +179,7 @@ public class EnemyController : MonoBehaviour
         //end sound
 
         // Change material to indicate damage
-        _body.GetComponent<Renderer>().material = hitMat;
+        _enemyMaterial.color = _hitColor;
 
         // Start coroutine to revert back
         StartCoroutine(ResetMaterialAfterDelay());
@@ -241,8 +247,12 @@ public class EnemyController : MonoBehaviour
     private System.Collections.IEnumerator ResetMaterialAfterDelay()
     {
         yield return new WaitForSeconds(resetMaterialDelay);
-        _body.GetComponent<Renderer>().material = defaultMat;
+        _enemyMaterial.color = _enemyColor;
         _enemyAnimator.SetBool("_gotHit", false);
+    }
+    private void OnDestroy()
+    {
+        _enemyMaterial.color = _enemyColor;
     }
 
     void Die()

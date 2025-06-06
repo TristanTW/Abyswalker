@@ -202,7 +202,9 @@ MonoBehaviour:
   canDodge: 1
   defaultMat: {fileID: 2100000, guid: 230668bd2ee40254d826f8e8e789736f, type: 2}
   hitMat: {fileID: 2100000, guid: 27e0296a54f0c0c4ca8039b21f804270, type: 2}
+  _playerMaterial: {fileID: 2100000, guid: 230668bd2ee40254d826f8e8e789736f, type: 2}
   resetMaterialDelay: 0.2
+  _knightBodyRenderer: {fileID: 0}
 --- !u!114 &3924248252850073040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,13 +228,15 @@ MonoBehaviour:
   heavyAttackCooldown: 1
   _lightAttackMovementCooldown: 0.1
   _heavyAttackMovementCooldown: 0.3
-  _shieldSprite: {fileID: 8535949635245434144}
+  _shieldSpriteFrame: {fileID: 0}
+  _shieldSpriteCurrentHP: {fileID: 0}
   _shieldSpriteBroken: {fileID: 3650860689194824990}
   _shieldSpriteRecharging: {fileID: 7713181417558942497}
   isBlocking: 0
   isAttacking: 0
   maxBlockHits: 4
   blockRechargeTime: 10
+  _isPositionLocked: 0
   blockHitSound: {fileID: 8300000, guid: 6fc44a1f4c8d07d4bafb8ba43d695369, type: 3}
   blockBreakSound: {fileID: 8300000, guid: 19a03ddadb58ff342b4fe36249ed8aa9, type: 3}
 --- !u!114 &608020904249662724
@@ -1427,6 +1431,10 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 415287891258781815, guid: b5e6d25f053b5f9468a4092b1aead007, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 415287891258781815, guid: b5e6d25f053b5f9468a4092b1aead007, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 230668bd2ee40254d826f8e8e789736f, type: 2}
@@ -1580,7 +1588,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1852576806548013000, guid: b5e6d25f053b5f9468a4092b1aead007, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2687709099766595294}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b5e6d25f053b5f9468a4092b1aead007, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2058673411592106561}
   m_SourcePrefab: {fileID: 100100000, guid: b5e6d25f053b5f9468a4092b1aead007, type: 3}
 --- !u!4 &7930278166064917366 stripped
 Transform:
@@ -1592,6 +1603,56 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b5e6d25f053b5f9468a4092b1aead007, type: 3}
   m_PrefabInstance: {fileID: 8627679948049355966}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8897640490631113199 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b5e6d25f053b5f9468a4092b1aead007, type: 3}
+  m_PrefabInstance: {fileID: 8627679948049355966}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &2058673411592106561
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8897640490631113199}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 230668bd2ee40254d826f8e8e789736f, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1001 &8975518739584097618
 PrefabInstance:
   m_ObjectHideFlags: 0
