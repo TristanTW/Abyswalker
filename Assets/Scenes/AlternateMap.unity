@@ -2172,7 +2172,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6118475028225873334, guid: 50c47135520d51e40a2ebd3cfdc5fe05, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 488.5
+      value: 488.34
       objectReference: {fileID: 0}
     - target: {fileID: 6546413562334934286, guid: 50c47135520d51e40a2ebd3cfdc5fe05, type: 3}
       propertyPath: graveSpawning
