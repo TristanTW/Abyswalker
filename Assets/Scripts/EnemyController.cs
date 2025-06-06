@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -40,13 +41,15 @@ public class EnemyController : MonoBehaviour
     public Material hitMat;
     public float resetMaterialDelay = 0.2f;
 
-    private float _knockbackPowerLight = 2;
-    private float _knockbackPowerHeavy = 4;
+    private float _knockbackPowerLight = 1;
+    private float _knockbackPowerHeavy = 1.5f;
+    private bool isStunned= false;
 
     private bool hasSpawnedAds = false;
 
     private Animator _enemyAnimator;
     private bool isdead = false;
+    private bool canMove = false;
     private void Awake()
     {
         player = GameObject.FindWithTag("Player");
@@ -90,12 +93,17 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    void OnEnemyAwakeningFinished()
+    {
+        canMove = true;
+    }
+
     void Update()
     {
         if (isdead) { return; }
 
         this.gameObject.transform.LookAt(player.transform.position);
-        if (player != null && !isRecharging)
+        if (player != null && !isRecharging && !isStunned && canMove)
         {
             float distance = Vector3.Distance(transform.position, player.transform.position);
 
@@ -172,11 +180,11 @@ public class EnemyController : MonoBehaviour
 
         if (type == "Light")
         {
-            _rb.AddForce(characterControllerScript._lookDirection * _knockbackPowerLight, ForceMode.Impulse);
+            StartCoroutine(KnockbackCoroutine(player.transform.position, 0.3f, _knockbackPowerLight, 0.25f));
         }
         else if (type == "Heavy")
         {
-            _rb.AddForce(characterControllerScript._lookDirection * _knockbackPowerHeavy, ForceMode.Impulse);
+            StartCoroutine(KnockbackCoroutine(player.transform.position, 0.3f, _knockbackPowerHeavy, 0.25f));
         }
         else
         {
@@ -205,6 +213,29 @@ public class EnemyController : MonoBehaviour
             Debug.Log("[TakeDamage] Health is zero or less. Calling Die().");
             Die();
         }
+    }
+
+    System.Collections.IEnumerator KnockbackCoroutine(Vector3 sourcePosition, float knockbackDuration, float knockbackDistance, float stunDuration)
+    {
+        Vector3 direction = (transform.position - sourcePosition).normalized;
+        Vector3 startPosition = transform.position;
+        Vector3 targetPosition = startPosition + direction * knockbackDistance;
+
+        float elapsed = 0f;
+
+        while (elapsed < knockbackDuration)
+        {
+            transform.position = Vector3.Lerp(startPosition, targetPosition, elapsed / knockbackDuration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+        transform.position = targetPosition;
+
+        isStunned = true;
+
+        yield return new WaitForSeconds(stunDuration);
+
+        isStunned = false;
     }
 
     private System.Collections.IEnumerator ResetMaterialAfterDelay()
