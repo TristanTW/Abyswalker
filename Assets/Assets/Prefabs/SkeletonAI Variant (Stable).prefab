@@ -227,6 +227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d5910278c1df8840aa05274d1e1ceb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enemySkinnedMeshRenderer: {fileID: 5100304292643764230}
   _doDamage: {fileID: 8300000, guid: fc9992cbc6f730d44b2f55777c655d56, type: 3}
   _body: {fileID: 6773361154249740808}
   _rb: {fileID: 701460452585467792}
@@ -238,8 +239,7 @@ MonoBehaviour:
   damage: 10
   damageCooldown: 1
   _swordVisueleCooldown: {fileID: 7150322756886103137}
-  defaultMat: {fileID: 2100000, guid: a96e062dfaf47024ab9d317e5a7794cb, type: 2}
-  hitMat: {fileID: 2100000, guid: 27e0296a54f0c0c4ca8039b21f804270, type: 2}
+  _enemyMaterial: {fileID: 0}
   resetMaterialDelay: 0.2
 --- !u!136 &5076961735449419418
 CapsuleCollider:
@@ -624,6 +624,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 711038b512c6dcd4b868668c6f39fd99, type: 3}
+--- !u!137 &5100304292643764230 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -5818889320171079249, guid: 711038b512c6dcd4b868668c6f39fd99, type: 3}
+  m_PrefabInstance: {fileID: 7636078866364957097}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7958551275588576834 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 711038b512c6dcd4b868668c6f39fd99, type: 3}
