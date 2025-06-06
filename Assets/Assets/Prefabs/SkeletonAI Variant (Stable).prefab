@@ -239,7 +239,7 @@ MonoBehaviour:
   damage: 10
   damageCooldown: 1
   _swordVisueleCooldown: {fileID: 7150322756886103137}
-  _enemyMaterial: {fileID: 0}
+  _enemyMaterial: {fileID: 2100000, guid: d75bf26287cff684ea6e1c317d0286ee, type: 2}
   resetMaterialDelay: 0.2
 --- !u!136 &5076961735449419418
 CapsuleCollider:

@@ -246,7 +246,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6365965303491879031, guid: 29436cdabc8684c4b97f766ae0e99130, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -65.8
+      value: -2.35
       objectReference: {fileID: 0}
     - target: {fileID: 6365965303491879031, guid: 29436cdabc8684c4b97f766ae0e99130, type: 3}
       propertyPath: m_LocalPosition.y
@@ -427,7 +427,7 @@ Transform:
   m_GameObject: {fileID: 176095343}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071069, z: -0, w: 0.70710677}
-  m_LocalPosition: {x: 16.899998, y: 0, z: -27.299988}
+  m_LocalPosition: {x: 56.8, y: 0, z: -117.5}
   m_LocalScale: {x: 11.69, y: 1, z: 19.42}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -516,7 +516,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &259296284
 Transform:
   m_ObjectHideFlags: 0
@@ -587,10 +587,6 @@ PrefabInstance:
     - target: {fileID: 6814311672458029146, guid: 83720b59a39baf64dac11bc5685e5842, type: 3}
       propertyPath: m_Name
       value: Gate (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6814311672458029146, guid: 83720b59a39baf64dac11bc5685e5842, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1744,10 +1740,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gate
       objectReference: {fileID: 0}
-    - target: {fileID: 1810196185414004919, guid: ccfadddd7ecc96147b6def604434f83c, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4544720542175237667, guid: ccfadddd7ecc96147b6def604434f83c, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -1828,7 +1820,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1596766404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2092,7 +2084,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1387866401405655136, guid: 50c47135520d51e40a2ebd3cfdc5fe05, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 68.1
+      value: 108
       objectReference: {fileID: 0}
     - target: {fileID: 1387866401405655136, guid: 50c47135520d51e40a2ebd3cfdc5fe05, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2100,7 +2092,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1387866401405655136, guid: 50c47135520d51e40a2ebd3cfdc5fe05, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 388.2
+      value: 298
       objectReference: {fileID: 0}
     - target: {fileID: 1387866401405655136, guid: 50c47135520d51e40a2ebd3cfdc5fe05, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2198,10 +2190,6 @@ PrefabInstance:
     - target: {fileID: 1985464813187608855, guid: 4ab5c9fa2b0b67941bd5cdfc907e866a, type: 3}
       propertyPath: m_Name
       value: Gate (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1985464813187608855, guid: 4ab5c9fa2b0b67941bd5cdfc907e866a, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8871527855706826361, guid: 4ab5c9fa2b0b67941bd5cdfc907e866a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2643,10 +2631,6 @@ PrefabInstance:
     - target: {fileID: 4284500210954100066, guid: 4fabf99e42cf7064d9b8d08b9d53303c, type: 3}
       propertyPath: m_Name
       value: Rooms
-      objectReference: {fileID: 0}
-    - target: {fileID: 4284500210954100066, guid: 4fabf99e42cf7064d9b8d08b9d53303c, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4799026948461418047, guid: 4fabf99e42cf7064d9b8d08b9d53303c, type: 3}
       propertyPath: m_LocalPosition.x
