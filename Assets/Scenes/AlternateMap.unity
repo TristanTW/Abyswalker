@@ -1828,7 +1828,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1596766404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1925,7 +1925,7 @@ Transform:
   m_GameObject: {fileID: 1596766403}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 95.47, y: 2.17, z: -29.88}
+  m_LocalPosition: {x: 100.9, y: 2.17, z: -32.1}
   m_LocalScale: {x: 1, y: 4.69, z: 4.04}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2145,6 +2145,10 @@ PrefabInstance:
     - target: {fileID: 4020981594030492356, guid: 50c47135520d51e40a2ebd3cfdc5fe05, type: 3}
       propertyPath: m_Name
       value: Map
+      objectReference: {fileID: 0}
+    - target: {fileID: 4645030653215538236, guid: 50c47135520d51e40a2ebd3cfdc5fe05, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4817759988214824360, guid: 50c47135520d51e40a2ebd3cfdc5fe05, type: 3}
       propertyPath: graveSpawning
