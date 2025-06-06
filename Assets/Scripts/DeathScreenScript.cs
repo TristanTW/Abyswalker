@@ -13,13 +13,14 @@ public class DeathScreenScript : MonoBehaviour
     void Start()
     {
         _sceneName = SceneManager.GetActiveScene().name;
+        _quit.onClick.AddListener(Quitgame);
+        _respawn.onClick.AddListener(Respawn);
     }
 
     // Update is called once per frame
     void Update()
     {
-        _quit.onClick.AddListener(Quitgame);
-        _respawn.onClick.AddListener(Respawn);
+       
     }
 
     void Quitgame()
