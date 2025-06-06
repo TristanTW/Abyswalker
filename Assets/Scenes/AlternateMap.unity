@@ -229,9 +229,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1092480741}
     - target: {fileID: 4830633066345398496, guid: 29436cdabc8684c4b97f766ae0e99130, type: 3}
+      propertyPath: _dodgeCooldown
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830633066345398496, guid: 29436cdabc8684c4b97f766ae0e99130, type: 3}
       propertyPath: _healCounterText
       value: 
       objectReference: {fileID: 1410663868}
+    - target: {fileID: 4830633066345398496, guid: 29436cdabc8684c4b97f766ae0e99130, type: 3}
+      propertyPath: movementCooldown
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4830633066345398496, guid: 29436cdabc8684c4b97f766ae0e99130, type: 3}
       propertyPath: resetMaterialDelay
       value: 0.2

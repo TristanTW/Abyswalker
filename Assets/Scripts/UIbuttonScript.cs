@@ -27,7 +27,7 @@ public class UIbuttonScript : MonoBehaviour
     }
     void PlayGame()
     {
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene("AlternateMap");
         Debug.Log("Game Started");
     }
 }
