@@ -118,7 +118,7 @@ public class Combat : MonoBehaviour
         // Light attack
         if (Input.GetMouseButtonDown(0) && Time.time - lastAttackTime >= lightAttackCooldown)
         {
-            _playerAnimator.SetBool("isWalking", false);
+            
             _playerAnimator.SetBool("isAttacking", true);
 
             lastAttackTime = Time.time;
@@ -129,7 +129,7 @@ public class Combat : MonoBehaviour
         // Heavy attack
         if (Input.GetMouseButtonDown(1) && Time.time - lastAttackTime >= heavyAttackCooldown)
         {
-            _playerAnimator.SetBool("isWalking", false);
+            
             _playerAnimator.SetBool("isAttacking", true);
 
             lastAttackTime = Time.time;
