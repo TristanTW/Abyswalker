@@ -186,7 +186,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3924248252850073040, guid: 29436cdabc8684c4b97f766ae0e99130, type: 3}
       propertyPath: lightAttackDamage
-      value: 150
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3924248252850073040, guid: 29436cdabc8684c4b97f766ae0e99130, type: 3}
       propertyPath: _shieldSpriteFrame
